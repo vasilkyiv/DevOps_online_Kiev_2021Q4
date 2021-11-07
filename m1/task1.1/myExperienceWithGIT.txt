@@ -1,0 +1,5 @@
+my experience with GIT
+
+1) version - allowed to work with files without fear of losing the data that was made.
+2) parallelism allowed to divide the project into several small projects which are easy to combine into one joint project
+3) readme.md allows you to visualize the work of the team in the process
