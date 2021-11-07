@@ -1,1 +1,5 @@
-DevOps has a function to implement, apply, monitor and support use of the product. As soon as we have a code and a demand from a client we should adopt the product to his  needs : find a proper operation system, testing and monitoring, providing changes according to the client needs or safe requirements and checking quality assurance
+DevOps has a function to implement, apply, monitor and support use of the product. 
+As soon as we have a code and a demand from a client we should adopt the product to his  needs : 
+    find a proper operation system,    
+    testing and monitoring, 
+    providing changes according to the client needs or safe requirements and checking quality assurance
