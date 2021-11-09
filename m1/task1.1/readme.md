@@ -11,9 +11,9 @@
 >    - [*my experience with a GIT*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/myExperienceWithGIT.txt)
 >    - [*Describe in your own words what DevOps is*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/DevOps.txt)
 
-[![*Report in screenshots*](sсreenshot/1.jpg)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/shreenshot/1.jpg)
+[![*Report in screenshots*](sсreenshot/1.jpg?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/shreenshot/1.jpg)
 
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/1.png)
+
 
 
 
