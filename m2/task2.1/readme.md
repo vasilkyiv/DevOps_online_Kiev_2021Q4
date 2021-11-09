@@ -7,7 +7,6 @@
 ===========================================================================
 > - [TASK_2.1](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2)
 
-<<<<<<< HEAD
 ### PART 1. HYPERVISORS 
 1. What are the most popular hypervisors for infrastructure virtualization?
 > 1. [proxmox-ve](https://www.proxmox.com/en/proxmox-ve)
@@ -58,4 +57,4 @@
 > 2.1 Explore VM configuration options (general settings, system settings, display, storage, audio, network, etc.).
 
 > 2.2 Configure the USB to connect the USB ports of the host machine to the VM [1, ch.3.11].
->>>>>>> task2.1
+
