@@ -10,10 +10,10 @@
 >    - [**git reflog**  commands output](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/task1.1_GIT.txt) 
 >    - [*my experience with a GIT*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/myExperienceWithGIT.txt)
 >    - [*Describe in your own words what DevOps is*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/DevOps.txt)
->    - [*Report in screenshots*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/main/m1/task1.1/screenshot.docx)
+>    - [*Report in screenshots*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1/task1.1/screenshot.docx?raw=true)
 
 ************************************************************************
 [MODULE 02](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m1) 
 ===========================================================================
 - TASK_2.1
->    - ![*Report in screenshots*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/main/m2/task2.1/1.png)
+>    - ![*Report in screenshots*](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/1.png?raw=true)
