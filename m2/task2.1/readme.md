@@ -16,7 +16,8 @@
 > 5. [oracle](https://datastore.net.ua/servisy/it-infrastruktura-v-hmari/?gclid=CjwKCAiA1aiMBhAUEiwACw25MfxsM2fPbCaHp7GZHUdND6_v0Y4rXQCCBW8dq1ATuDsQ0CgqHrgpbRoCIhEQAvD_BwE)
 > 6. [citrix](https://www.citrix.com/solutions/vdi-and-daas/what-is-vdi-virtual-desktop-infrastructure.html)
 
-
+2. Briefly describe the main differences of the most popular hypervisors?
+> - https://www.ibm.com/cloud/learn/hypervisors
 
 
  
