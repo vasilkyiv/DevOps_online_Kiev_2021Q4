@@ -15,6 +15,7 @@
 > 4. [google](https://cloud.google.com/compute)
 > 5. [oracle](https://datastore.net.ua/servisy/it-infrastruktura-v-hmari/?gclid=CjwKCAiA1aiMBhAUEiwACw25MfxsM2fPbCaHp7GZHUdND6_v0Y4rXQCCBW8dq1ATuDsQ0CgqHrgpbRoCIhEQAvD_BwE)
 > 6. [citrix](https://www.citrix.com/solutions/vdi-and-daas/what-is-vdi-virtual-desktop-infrastructure.html)
+> 6. [openvz](https://openvz.org/)
 
 2. Briefly describe the main differences of the most popular hypervisors?
 > - https://www.ibm.com/cloud/learn/hypervisors
@@ -58,3 +59,12 @@
 
 > 2.2 Configure the USB to connect the USB ports of the host machine to the VM [1, ch.3.11].
 
+> 2.3 Configure a shared folder to exchange data between the virtual machine and the host [1, ch.4.3].
+
+> 2.4 Configure different network modes for VM1, VM2. Check the connection between VM1, VM2, Host, Internet for different network modes. You can use the ping command to do this. Make a table of possible connections.
+
+# 3. Work with CLI through VBoxManage.
+> 3.1 Run the cmd.exe command line.
+> 3.2 Examine the purpose and execute the basic commands of VBoxManage list, showvminfo, createvm, startvm, modifyvm, clonevm, snapshot, controlvm [1, ch.8].
+
+[![*Report in screenshots*](shreenshot/7.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/7.png)
