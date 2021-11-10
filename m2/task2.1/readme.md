@@ -61,6 +61,8 @@
 
 > 2.3 Configure a shared folder to exchange data between the virtual machine and the host [1, ch.4.3].
 
+[![*Report in screenshots*](shreenshot/11.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/11.png)
+
 > 2.4 Configure different network modes for VM1, VM2. Check the connection between VM1, VM2, Host, Internet for different network modes. You can use the ping command to do this. Make a table of possible connections.
 
 > 3. Work with CLI through VBoxManage.
