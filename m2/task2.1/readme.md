@@ -85,4 +85,14 @@
 
 > 5. Connect to the VM using the program PuTTY (can be downloaded from [6]), using SSH, IP address and port listed above (127.0.0.1:2222). By default, login - vagrant and password are also vagrant
 
-[![*Report in screenshots*](shreenshot/9.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/9.png)
+[![*Report in screenshots*](shreenshot/13.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/13.png)
+
+6. Record the date and time by executing the date command
+
+[![*Report in screenshots*](shreenshot/14.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/14.png)
+
+8. Create your own Vagrant box [7] 
+
+[![*Report in screenshots*](shreenshot/15.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/15.png)
+
+9. (optional) Create a test environment from a few servers. Servers' parameters are chosen independently by the student.
