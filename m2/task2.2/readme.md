@@ -23,6 +23,18 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 > 3. Find the hands-on tutorials and AWS Well-Architected Labs for your AWS needs. Explore list of step-by-step tutorials for deferent category. Use, repeat and have fun))
 
- > 3.1. [hands-on tutorials](https://aws.amazon.com/getting-started/hands-on/?awsf.getting-started-category=category%23compute&awsf.getting-started-content-type=content-type%23hands-on&?e=gs2020&p=gsrc&awsf.getting-started-level=level%23300&getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc)
+># 3.1. [hands-on tutorials](https://aws.amazon.com/getting-started/hands-on/?awsf.getting-started-category=category%23compute&awsf.getting-started-content-type=content-type%23hands-on&?e=gs2020&p=gsrc&awsf.getting-started-level=level%23300&getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc)
 
- > 3.2. [](https://www.wellarchitectedlabs.com/) 
+- [developer-tools](https://aws.amazon.com/ru/products/developer-tools/)
+- [developer-tools](https://aws.amazon.com/ru/products/developer-tools/)
+
+># 3.2. [AWS Well-Architected](https://www.wellarchitectedlabs.com/) 
+
+> 4. Review the 10-minute example Launch a Linux Virtual Machine with Amazon Lightsail. Repeat, create your own VM in the AWS cloud and connect to it.
+
+- [Launch a Linux Virtual Machine with Amazon Lightsail](https://www.youtube.com/watch?v=e_AmFP1jhNo)
+    - [lightsail](https://aws.amazon.com/ru/lightsail/)
+
+[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/2.png)
+
+ 
