@@ -70,6 +70,10 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 > 12. Review the 10-minute example Batch upload files to the cloud to Amazon S3 using the AWS CLI. Create a user AWS IAM, configure CLI AWS and upload any files to S3.
 
-- 11.1. [Batch upload files to the cloud to Amazon S3 using the AWS CLI](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
+- 12.1. [Batch upload files to the cloud to Amazon S3 using the AWS CLI](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
 
 [![*Report in screenshots*](shreenshot/10.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/10.png)
+
+13. Review the 10-minute example. Explore the possibilities of creating your own domain and domain name for your site.
+
+- 13.1. [Explore the possibilities of creating your own domain and domain name for your site](https://aws.amazon.com/getting-started/hands-on/get-a-domain/?nc1=h_ls)
