@@ -26,7 +26,6 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 ># 3.1. [hands-on tutorials](https://aws.amazon.com/getting-started/hands-on/?awsf.getting-started-category=category%23compute&awsf.getting-started-content-type=content-type%23hands-on&?e=gs2020&p=gsrc&awsf.getting-started-level=level%23300&getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc)
 
 - [developer-tools](https://aws.amazon.com/ru/products/developer-tools/)
-- [developer-tools](https://aws.amazon.com/ru/products/developer-tools/)
 
 ># 3.2. [AWS Well-Architected](https://www.wellarchitectedlabs.com/) 
 
@@ -37,4 +36,29 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 [![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/2.png)
 
- 
+> 5. Launch another Linux Virtual Machine without Amazon Lightsail. It is recommended to use the t2 or t3.micro instance and the CentOS operating system.
+
+ [![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/3.png)
+
+> 6. Create a snapshot of your instance to keep as a backup.
+
+[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/4.png)
+
+> 7. Create and attach a Disk_D (EBS) to your instance to add more storage space. Create and save some file on Disk_D.
+
+[![*Report in screenshots*](shreenshot/5.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/5.png)
+
+> 8. Launch the third instance from backup.
+
+[![*Report in screenshots*](shreenshot/6.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/6.png)
+
+> 9. Detach Disk_D from the 2nd instance and attach disk_D to the new instance.
+
+[![*Report in screenshots*](shreenshot/7.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/7.png)
+
+> 10. Launch and configure a WordPress instance with Amazon Lightsail link
+
+ - 10.1. [WordPress](https://aws.amazon.com/getting-started/hands-on/launch-a-wordpress-website/?trk=gs_card)
+
+[![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/8.png)
+
