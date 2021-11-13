@@ -62,6 +62,14 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 [![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/8.png)
 
-11. Review the 10-minute example Store and Retrieve a File. Repeat, creating your own repository.
+> 11. Review the 10-minute example Store and Retrieve a File. Repeat, creating your own repository.
 
->  11.1. [backup-files-to-amazon-s3](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
+- 11.1. [backup-files-to-amazon-s3](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
+
+[![*Report in screenshots*](shreenshot/9.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/9.png)
+
+> 12. Review the 10-minute example Batch upload files to the cloud to Amazon S3 using the AWS CLI. Create a user AWS IAM, configure CLI AWS and upload any files to S3.
+
+- 11.1. [Batch upload files to the cloud to Amazon S3 using the AWS CLI](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
+
+[![*Report in screenshots*](shreenshot/10.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/10.png)
