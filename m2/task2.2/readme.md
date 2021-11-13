@@ -62,3 +62,6 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 [![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/8.png)
 
+11. Review the 10-minute example Store and Retrieve a File. Repeat, creating your own repository.
+
+ - 11.1. [backup-files-to-amazon-s3](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
