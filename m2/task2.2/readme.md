@@ -64,4 +64,4 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 11. Review the 10-minute example Store and Retrieve a File. Repeat, creating your own repository.
 
- - 11.1. [backup-files-to-amazon-s3](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
+>  11.1. [backup-files-to-amazon-s3](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/)
