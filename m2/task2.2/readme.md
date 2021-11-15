@@ -60,7 +60,9 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
  - 10.1. [WordPress](https://aws.amazon.com/getting-started/hands-on/launch-a-wordpress-website/?trk=gs_card)
 
-[![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/8.png)
+[![*Report in screenshots*](shreenshot/8.png?raw=true)](http://35.155.36.74/)
+
+ - [my site on wordpress](http://35.155.36.74/)
 
 > 11. Review the 10-minute example Store and Retrieve a File. Repeat, creating your own repository.
 
@@ -74,6 +76,10 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 [![*Report in screenshots*](shreenshot/10.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/10.png)
 
-13. Review the 10-minute example. Explore the possibilities of creating your own domain and domain name for your site.
+> 13. Review the 10-minute example. Explore the possibilities of creating your own domain and domain name for your site.
 
 - 13.1. [Explore the possibilities of creating your own domain and domain name for your site](https://aws.amazon.com/getting-started/hands-on/get-a-domain/?nc1=h_ls)
+
+> 14. Review the 10-minute example Deploy Docker Containers on Amazon Elastic Container Service (Amazon ECS). Repeat, create a cluster, and run the online demo application or better other application with custom settings.
+
+- 14.1. [Deploy Docker Containers on Amazon Elastic Container Service (Amazon ECS).](https://docs.aws.amazon.com/AmazonECS/latest/userguide/docker-basics.html)
