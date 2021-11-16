@@ -87,3 +87,12 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 - 14.1. [Deploy Docker Containers on Amazon Elastic Container Service (Amazon ECS).](https://docs.aws.amazon.com/AmazonECS/latest/userguide/docker-basics.html)
 
 15. Create a static website on Amazon S3, publicly available (link1 or link2 - using a custom domain registered with Route 53). Post on the page your own photo, the name of the educational program (EPAM DevOps online Autumn 2021), the list of AWS services with which the student worked within the educational program or earlier and the full list with links of completed labs (based on tutorials or qwiklabs). Provide the link to the website in your report and СV.
+
+- 15.1.1 [Configuring a static website on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html) 
+- 15.1.2 [Configuring a static website using a custom domain registered with Route 53](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html) 
+
+- 15.2.1 [Find the hands-on tutorials for your AWS needs  - TUTORIALS ](https://aws.amazon.com/getting-started/hands-on/?awsf.getting-started-content-type=content-type%23hands-on&?e=gs2020&p=gsrc&getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc&awsf.getting-started-category=*all&awsf.getting-started-level=*all) 
+
+- 15.2.2 [Not sure where to start? Find featured learning below. We give you temporary credentials to actual cloud resources, so you can learn the cloud using the real thing. - QWIKLABS](https://amazon.qwiklabs.com/) 
+
+[![*Report in screenshots*](shreenshot/12.png?raw=true)](https://s3.amazonaws.com/ostapenko.info/index.html?)
