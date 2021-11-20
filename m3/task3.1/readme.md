@@ -222,3 +222,28 @@
 [![*Report in screenshots*](shreenshot/17.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
 
 [![*Report in screenshots*](shreenshot/18.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+************************
+[MODULE 03 NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3) 
+================
+> # [Task 3.4  Налаштування DHCP, DNS, NAT](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3)
+
+> 1. Налаштувати DHCP Server в Enterprise мережі (рис.1). Для цього увійти в налаштування DHCP Server
+
+> 2. Зробити налаштування DHCP Pool, вказавши початкову адресу 10.Y.D.10 та адресу Default Gateway – адресу інтерфейсу GE0/0 Router ISP1. Зберегти налаштування (кнопка Save) та увімкнути DHCP сервіс (позначка On) на рис.2
+
+[![*Report in screenshots*](shreenshot/19.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 3. Перевірити працездатність сервісу, поставивши в налаштуваннях Client 1 та Client 2 DHCP, як показано на рис. 3
+
+[![*Report in screenshots*](shreenshot/20.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 4. Налаштувати DHCP на Home Router та перевірити працездатність на Client 3
+
+[![*Report in screenshots*](shreenshot/21.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+[![*Report in screenshots*](shreenshot/22.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+5. Для налаштування і перевірки роботи DNS сервісу призначити Web Server1 та Web Server2 доменні імена, наприклад, domain1.com та domain2.com відповідно.
+
+
