@@ -2,15 +2,10 @@
 [DevOps_online_Kiev_2021Q4 (MY GITHUB URL REPO)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4.git)
 =======================================
 
-************************************************************************
-[MODULE 03](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3) 
+[MODULE 03 NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3) 
 ===========================================================================
-> - [TASK_3.1 Створення мереж Home Office, Enterprise, Data Center.](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3)
+> # [TASK_3.1 Створення мереж Home Office, Enterprise, Data Center.](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3)
 
-# Module 3 NETWORKING
-
-# Task 3.1 Створення мереж Home Office, Enterprise, Data Center.
-===========================================================================
 
 > 1. Створити мережі, як показано на рис. 1. Рекомендовані моделі комутаторів Catalyst 2960, безпровідний маршрутизатор – WRT300N. В мережі Data Center підключити сервери до портів відповідно рис. 1
 
@@ -64,7 +59,10 @@
 [![*Report in screenshots*](shreenshot/5.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
 
 ************************
-# Task 3.2  З’єднання окремих мереж за допомогою мережі Internet та налаштування VLAN
+[MODULE 03 NEITORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3) 
+================
+> # [Task 3.2  З’єднання окремих мереж за допомогою мережі Internet та налаштування VLAN](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3)
+
 
 > 1. З’єднати створені у попередньому Taskу мережі між собою, як показано на рис. 1. Для побудови мережі Internet використати маршрутизатори PT-Empty, попередньо вставивши в них 5 модулів 1CGE, як показано на рис. 2. Switch мережі Enterprise підключити до інтерфейсу GigabitEthernet0/0 (GE0/0) Router ISP1, Switch мережі Data Center підключити до інтерфейсу GigabitEthernet0/0 (GE0/0) Router ISP3, WAN порт Home Router мережі Home Office підключити до інтерфейсу GigabitEthernet0/0 (GE0/0), як показано на рис.1. Маршрутизатори з’єднати між собою через інтерфейси, як показано на рис. 1.
 
@@ -177,3 +175,50 @@
 > 16. Перевірити працездатність за допомогою команди ping з одного сервера на інший.
 
 [![*Report in screenshots*](shreenshot/11.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+************************
+[MODULE 03 NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3) 
+================
+> # [Task 3.3  Налаштування маршрутизації](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3)
+
+Нехай в результаті поділу магістральної мережі (Рис.1) на підмережі були призначені адреси інтерфейсам маршрутизаторів, як показано в таблиці 1.
+****************************************************************
+| Router | Interface | Network IP-address  | Host IP-address    |
+|:-------|:---------:| -------------------:|-------------------:|
+| ISP1   | GE0/0     |***10.83.10.0/24***  |***10.83.10.1/24*** |
+|        | GE1/0     |***20.3.83.64/26***  |***20.3.83.66/26*** |
+|        | GE2/0     |***20.3.83.128/26*** |***20.3.83.129/26***|
+| ISP2   | GE0/0     |***20.3.83.0/26***   |***20.3.83.1/26***  |
+|        | GE1/0     |***20.3.83.64/26***  |***20.3.83.65/26*** |
+|        | GE3/0     |***20.3.83.192/26*** |***20.3.83.194/26***|
+| ISP3   | GE0/0.2   |***3.10.83.0/26***   |***3.10.83.1/26***  |
+|        | GE0/0.3   |***3.10.83.64/26***  |***3.10.83.65/26*** |
+|        | GE0/0.4   |***3.10.83.128/26*** |***3.10.83.129/26***|
+|        | GE2/0     |***20.3.83.128/26*** |***20.3.83.130/26***|
+|        | GE3/0     |***20.3.83.192/26*** |***20.3.83.193/26***|
+| HOME   | INTERNET  |***20.3.83.0/26***   |***20.3.83.2/26***  | 
+*****************************************************************
+
+1. Налаштувати таблиці маршрутизації на маршрутизаторах ISP1, ISP2 та ISP3. В таблиці маршрутизації слід вносити тільки віддалені мережі. Наприклад, на Router ISP2 необхідно вказати маршрути тільки до мереж 10.99.25.0/ та 4.25.99.0/24. Мережу 192.168.0.0 в таблиці маршрутизаторів ISP1, ISP2 та ISP3 заносити нетреба, оскільки вона знаходиться під NAT. Приклад налаштування маршрутизації на Router ISP2 наведено на рис. 2.
+
+2. Налаштувати маршрутизацію на бездротовому маршрутизаторі Home Router, для чого додати Default маршрут на Router ISP2, як показано на рис. 3
+
+[![*Report in screenshots*](shreenshot/12.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+[![*Report in screenshots*](shreenshot/13.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+[![*Report in screenshots*](shreenshot/14.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 3. Перевірити працездатність мережі за допомогою команди ping та tracert. Остання команда дозволить проконтролювати маршрут пакету. На рис.4 наведено результати tracert з Client 1 на Web Server 2.
+
+[![*Report in screenshots*](shreenshot/15.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 4. З таблиць маршрутизації маршрутизаторів ISP1, ISP2 та ISP3 видалити статичні записи.
+
+> 5. На маршрутизаторах ISP1, ISP2 та ISP3 налаштувати протокол RIP, для чого вказати перелік безпосередньо приєднаних мереж у класовому форматі, як показано на рис.5 для ISP1.
+
+[![*Report in screenshots*](shreenshot/16.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+[![*Report in screenshots*](shreenshot/17.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+[![*Report in screenshots*](shreenshot/18.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
