@@ -244,6 +244,40 @@
 
 [![*Report in screenshots*](shreenshot/22.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
 
-5. Для налаштування і перевірки роботи DNS сервісу призначити Web Server1 та Web Server2 доменні імена, наприклад, domain1.com та domain2.com відповідно.
+> 5. Для налаштування і перевірки роботи DNS сервісу призначити Web Server1 та Web Server2 доменні імена, наприклад, domain1.com та domain2.com відповідно.
 
+[![*Report in screenshots*](shreenshot/23.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
 
+> 6. Внести відповідні записи в налаштування DNS сервера, як показано на рис. 4 та увімкнути DNS service.
+
+[![*Report in screenshots*](shreenshot/24.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 7. Додати до налаштувань DHCP серверів адресу DNS сервера та оновити налаштування на клієнтах (переключившись з DHCP в Static і назад в DHCP).
+
+[![*Report in screenshots*](shreenshot/25.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 8. Перевірити працездатність шляхом відправки ping з Client на доменне ім’я, як показано на рис. 5
+
+[![*Report in screenshots*](shreenshot/26.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+# Налаштування Port Forwarding на Home Router (додаткове завдання)
+
+> 9. Додати в мережу Home Office Home Server та призначити йому статичну адресу, як показано на рис. 6
+
+[![*Report in screenshots*](shreenshot/27.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 10. На Home Server для HTTP сервісу відкоригувати index.html, як показано на рис. 7
+
+[![*Report in screenshots*](shreenshot/28.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 11. Налаштувати Port Forwarding на Home Router, як показано на рис. 8
+
+[![*Report in screenshots*](shreenshot/29.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 12. Додати на DNS Server запис для Home Server, як показано на рис.9
+
+[![*Report in screenshots*](shreenshot/30.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
+
+> 13. Перевірити працездатність шляхом уведення на Client1 у Desktop/Web Browser - domain3.com, як показано на рис. 10
+
+[![*Report in screenshots*](shreenshot/31.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task3.1)
