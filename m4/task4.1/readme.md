@@ -82,7 +82,8 @@ select user, host from mysql.user;
                                               ON DELETE NO ACTION  ON UPDATE NO ACTION
           ) ;
 
-
-
+*******************************
+### mysql --console -uroot -p < c:\mysql\world.sql 
+### - [importing world.sql database from https://dev.mysql.com/doc/index-other.html](https://dev.mysql.com/doc/index-other.html)
 
 
