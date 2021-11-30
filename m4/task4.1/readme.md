@@ -23,6 +23,65 @@
 
 > 5. Fill in tables.
 
+select user, host from mysql.user;
+
+     show CREATE DATABASE ostapenkot4;
+
+     CREATE DATABASE ostapenkot4;
+
+     drop database ostapenkot4;
+
+     CREATE DATABASE ostapenkot4;
+
+     use ostapenkot4;
+
+     show tables;
+
+     desc student;
+     desc teacher;
+
+     show columns from teacher;
+     show columns from student;
+
+     create table student(
+          studentID int not null auto_increment primary key, 
+          studentName varchar(45) not null
+     ) ;
+
+     show create table teacher;
+
+     create table teacher(
+          teacherID int not null auto_increment primary key, 
+          teacherName varchar(45) not null 
+     )  ;  
+
+     show create table lesson;
+
+
+      -- -----------------------------------------------------
+          -- Table `ostapenko_task4`.`LESSON`
+          -- -----------------------------------------------------
+          CREATE TABLE IF NOT EXISTS LESSON (
+               lessonID INT NOT NULL AUTO_INCREMENT,
+               lessonNAME VARCHAR(45) NOT NULL,
+               STUDENT_studentID INT NOT NULL,
+               TEACHER_teacherID INT NOT NULL,
+               PRIMARY KEY (lessonID),
+          
+          INDEX fk_LESSON_STUDENT_idx (STUDENT_studentID ASC) ,
+          INDEX fk_LESSON_TEACHER1_idx (TEACHER_teacherID ASC) ,
+          
+                         CONSTRAINT fk_LESSON_STUDENT 
+                              FOREIGN KEY (STUDENT_studentID)
+                                    REFERENCES STUDENT (studentID)
+                                             ON DELETE NO ACTION  ON UPDATE NO ACTION,
+          
+                         CONSTRAINT fk_LESSON_TEACHER
+                               FOREIGN KEY (TEACHER_teacherID)
+                                    REFERENCES TEACHER (teacherID)
+                                              ON DELETE NO ACTION  ON UPDATE NO ACTION
+          ) ;
+
 
 
 
