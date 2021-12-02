@@ -6,6 +6,7 @@
 ===========================================================================
 > # [TASK_4.1 04 DBA](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
+> # [PART 1](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
 > 1. Download MySQL server for your OS on VM.
 
@@ -17,11 +18,64 @@
 
 [![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
 
+**************************************************
+
+# DDL – Data Definition Language
+Data Definition Language (DDL) – это группа операторов определения данных. Другими словами, с помощью операторов, входящих в эту группы, мы определяем структуру базы данных и работаем с объектами этой базы, т.е. создаем, изменяем и удаляем их.
+
+В эту группу входят следующие операторы:
+
+### CREATE – используется для создания объектов базы данных;
+### ALTER – используется для изменения объектов базы данных;
+### DROP – используется для удаления объектов базы данных.
+
+# DML – Data Manipulation Language
+Data Manipulation Language (DML) – это группа операторов для манипуляции данными. С помощью этих операторов мы можем добавлять, изменять, удалять и выгружать данные из базы, т.е. манипулировать ими.
+
+В эту группу входят самые распространённые операторы языка SQL:
+
+### SELECT – осуществляет выборку данных;
+### INSERT – добавляет новые данные;
+### UPDATE – изменяет существующие данные;
+### DELETE – удаляет данные.
+
+# DCL – Data Control Language
+Data Control Language (DCL) – группа операторов определения доступа к данным. Иными словами, это операторы для управления разрешениями, с помощью них мы можем разрешать или запрещать выполнение определенных операций над объектами базы данных.
+
+Сюда входят:
+
+### GRANT – предоставляет пользователю или группе разрешения на определённые операции с объектом;
+### REVOKE – отзывает выданные разрешения;
+### DENY– задаёт запрет, имеющий приоритет над разрешением.
+
+
+# TCL – Transaction Control Language
+Transaction Control Language (TCL) – группа операторов для управления транзакциями. Транзакция – это команда или блок команд (инструкций), которые успешно завершаются как единое целое, при этом в базе данных все внесенные изменения фиксируются на постоянной основе или отменяются, т.е. все изменения, внесенные любой командой, входящей в транзакцию, будут отменены.
+
+Группа операторов TCL предназначена как раз для реализации и управления транзакциями. Сюда можно отнести:
+
+### BEGIN TRANSACTION – служит для определения начала транзакции;
+### COMMIT TRANSACTION – применяет транзакцию;
+### ROLLBACK TRANSACTION – откатывает все изменения, сделанные в контексте текущей транзакции;
+### SAVE TRANSACTION – устанавливает промежуточную точку сохранения внутри транзакции.
+***************************************
+
 > 4. Create a database on the server through the console.
 
 [![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
 
 > 5. Fill in tables.
+
+**************************
+# DDL – Data Definition Language
+Data Definition Language (DDL) – это группа операторов определения данных. Другими словами, с помощью операторов, входящих в эту группы, мы определяем структуру базы данных и работаем с объектами этой базы, т.е. создаем, изменяем и удаляем их.
+
+В эту группу входят следующие операторы:
+
+### CREATE – используется для создания объектов базы данных;
+### ALTER – используется для изменения объектов базы данных;
+### DROP – используется для удаления объектов базы данных.
+************************
 
 select user, host from mysql.user;
 
@@ -55,12 +109,11 @@ select user, host from mysql.user;
           teacherName varchar(45) not null 
      )  ;  
 
+     
+
      show create table lesson;
 
 
-      -- -----------------------------------------------------
-          -- Table `ostapenko_task4`.`LESSON`
-          -- -----------------------------------------------------
           CREATE TABLE IF NOT EXISTS LESSON (
                lessonID INT NOT NULL AUTO_INCREMENT,
                lessonNAME VARCHAR(45) NOT NULL,
@@ -81,6 +134,8 @@ select user, host from mysql.user;
                                     REFERENCES TEACHER (teacherID)
                                               ON DELETE NO ACTION  ON UPDATE NO ACTION
           ) ;
+
+ALTER TABLE `lesson` DROP COLUMN `date`;
 
 *******************************
 ### mysql --console -uroot -p < c:\mysql\world.sql 
@@ -105,7 +160,22 @@ select left(name,10), population from country limit 5 offset 2;
 
 select code,left(name,10) from country limit 5;
 
-### SELECT  ... where
+> 6. Construct and execute SELECT operator with WHERE, GROUP BY and ORDER BY.
+
+
+******************************
+# DML – Data Manipulation Language
+Data Manipulation Language (DML) – это группа операторов для манипуляции данными. С помощью этих операторов мы можем добавлять, изменять, удалять и выгружать данные из базы, т.е. манипулировать ими.
+
+В эту группу входят самые распространённые операторы языка SQL:
+
+### SELECT – осуществляет выборку данных;
+### INSERT – добавляет новые данные;
+### UPDATE – изменяет существующие данные;
+### DELETE – удаляет данные.
+******************************
+
+## SELECT  ... where
 
 select code,left(name,10) from country where code = 'ALB';
 
@@ -146,4 +216,82 @@ select continent, sum(population)  into outfile 'c:/mysql/query.txt' from countr
 select sum(population) into @count from country;
 select @count;
 
-### insert  ... 
+## insert  ... 
+**************************************************
+
+                    CREATE DATABASE ostapenkot4;
+
+                    create table student(
+                              studentID int not null auto_increment primary key, 
+                              studentName varchar(45) not null
+                    ) ;
+
+insert  into student values (null, 'student1'),
+(null,'Student2'),
+ (null,'Student3'),
+(null,'Student4'),
+(null,'Student5'),
+(null,'Student6');
+
+select * from student;
+*****************************************************************************
+                    create table teacher(
+                              teacherID int not null auto_increment primary key, 
+                              teacherName varchar(45) not null 
+                         )  ;  
+insert  into teacher values (null, 'teacher1'),
+(null,'teacher2'),
+ (null,'teacher3'),
+(null,'teacher4'),
+(null,'teacher5'),
+(null,'teacher6'); 
+
+select * from teacher;
+*****************************************************************************
+CREATE TABLE IF NOT EXISTS `ostapenkot4`.`LESSON` (
+  `lessonID` INT NOT NULL AUTO_INCREMENT,
+  `lessonNAME` VARCHAR(45) NOT NULL,
+  `STUDENT_studentID` INT NOT NULL,
+  `TEACHER_teacherID` INT NOT NULL,
+  PRIMARY KEY (`lessonID`, `TEACHER_teacherID`),
+
+  INDEX `fk_LESSON_STUDENT_idx` (`STUDENT_studentID` ASC) VISIBLE,
+  INDEX `fk_LESSON_TEACHER1_idx` (`TEACHER_teacherID` ASC) VISIBLE,
+
+  CONSTRAINT `fk_LESSON_STUDENT`
+    FOREIGN KEY (`STUDENT_studentID`)
+    REFERENCES `ostapenkot4`.`STUDENT` (`studentID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT `fk_LESSON_TEACHER1`
+    FOREIGN KEY (`TEACHER_teacherID`)
+    REFERENCES `ostapenkot4`.`TEACHER` (`teacherID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+
+select * from lesson;
+
+
+INSERT INTO lesson (lessonNAME,STUDENT_studentID,TEACHER_teacherID) VALUES ("linux",1,1);
+
+select * from teacher 
+left join lesson
+on teacher.teacherid=lesson.teacher_teacherid;
+
+select user from mysql.user;
+
+INSERT INTO student select null, user from mysql.user;
+
+load data 
+          infile 'c:/mysql/folder/data.txt' 
+          into table  student
+          fields terminated by ','
+          lines terminated by '\n'
+
+select * from student order by studentid desc limit 5;
+
+## update  & replace
+
+
+
