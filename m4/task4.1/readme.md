@@ -86,4 +86,64 @@ select user, host from mysql.user;
 ### mysql --console -uroot -p < c:\mysql\world.sql 
 ### - [importing world.sql database from https://dev.mysql.com/doc/index-other.html](https://dev.mysql.com/doc/index-other.html)
 
+### SELECT
 
+select left(name, 10), continent 
+from country;
+
+select * from country limit 5;
+
+ select distinct continent materyk from country;
+
+  select  continent from country group by continent;
+
+select distinct continent, region, sum(population) from country group by 1,2 with rollup;
+
+select distinct continent as 'континент' from country;
+
+select left(name,10), population from country limit 5 offset 2;
+
+select code,left(name,10) from country limit 5;
+
+### SELECT  ... where
+
+select code,left(name,10) from country where code = 'ALB';
+
+select code,left(name,10), population from country where surfacearea > 1000000 and surfacearea < 4000000;
+
+select code,left(name,10), population from country where surfacearea between 1000000 and 4000000;
+
+select name, district from city where name like 'Ky%';
+
+select name, district from city where name like '__i%';
+
+select name, population from city where name in ('Kyiv', 'Lviv');
+
+select name, population from city order by name desc limit 50; 
+
+select name, population from city order by population  limit 50;  
+
+select name, population from city order by population  desc limit 50;
+
+select name, population from city order by rand()   limit 5;
+
+select name, population from city order by rand()  desc limit 5;
+
+select continent from country group by continent;
+
+select continent, sum(population) from country group by 1;
+
+select continent, region, sum(population) from country order by 1,2 group by 1,2;
+
+select continent, region, sum(population) from country group by 1,2 order by 1,2;
+
+select continent, region, sum(population) from country group by 1,2 with rollup;
+
+select continent, sum(population) from country group by 1 having sum(population) > 400000000;
+
+select continent, sum(population)  into outfile 'c:/mysql/query.txt' from country group by 1 having sum(population) > 400000000;
+
+select sum(population) into @count from country;
+select @count;
+
+### insert  ... 
