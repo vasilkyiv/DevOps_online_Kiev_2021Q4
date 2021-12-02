@@ -293,5 +293,21 @@ select * from student order by studentid desc limit 5;
 
 ## update  & replace
 
+UPDATE  student
+    SET studentName = studentName +'100'
+    WHERE studentID = 1;
 
+select * from student;
 
+UPDATE  teacher
+    SET teacherName = column (teacherName) +'100'
+    WHERE teacherID = 1;
+select * from teacher;
+
+ REPLACE INTO student VALUES (2, 'student20000');
+ select * from student;
+
+  REPLACE INTO teacher VALUES (2, 'teacher2220000');
+ select * from teacher where teacherID = 2;
+
+ ## delete  & load XML
