@@ -77,7 +77,7 @@ Data Definition Language (DDL) – это группа операторов оп
 ### DROP – используется для удаления объектов базы данных.
 ************************
 
-select user, host from mysql.user;
+     select user, host from mysql.user;
 
      show CREATE DATABASE ostapenkot4;
 
@@ -135,7 +135,7 @@ select user, host from mysql.user;
                                               ON DELETE NO ACTION  ON UPDATE NO ACTION
           ) ;
 
-ALTER TABLE `lesson` DROP COLUMN `date`;
+     ALTER TABLE `lesson` DROP COLUMN `date`;
 
 *******************************
 ### mysql --console -uroot -p < c:\mysql\world.sql 
@@ -143,29 +143,29 @@ ALTER TABLE `lesson` DROP COLUMN `date`;
 
 ### SELECT
 
-select left(name, 10), continent 
-from country;
+     select left(name, 10), continent 
+     from country;
 
-select * from country limit 5;
+     select * from country limit 5;
 
- select distinct continent materyk from country;
+     select distinct continent materyk from country;
 
-  select  continent from country group by continent;
+     select  continent from country group by continent;
 
-select distinct continent, region, sum(population) from country group by 1,2 with rollup;
+     select distinct continent, region, sum(population) from country group by 1,2 with rollup;
 
-select distinct continent as 'континент' from country;
+     select distinct continent as 'континент' from country;
 
-select left(name,10), population from country limit 5 offset 2;
+     select left(name,10), population from country limit 5 offset 2;
 
-select code,left(name,10) from country limit 5;
+     select code,left(name,10) from country limit 5;
 
 > 6. Construct and execute SELECT operator with WHERE, GROUP BY and ORDER BY.
 
 
 ******************************
 # DML – Data Manipulation Language
-Data Manipulation Language (DML) – это группа операторов для манипуляции данными. С помощью этих операторов мы можем добавлять, изменять, удалять и выгружать данные из базы, т.е. манипулировать ими.
+     Data Manipulation Language (DML) – это группа операторов для манипуляции данными. С помощью этих операторов мы можем добавлять, изменять, удалять и выгружать данные из базы, т.е. манипулировать ими.
 
 В эту группу входят самые распространённые операторы языка SQL:
 
@@ -177,44 +177,44 @@ Data Manipulation Language (DML) – это группа операторов д
 
 ## SELECT  ... where
 
-select code,left(name,10) from country where code = 'ALB';
+     select code,left(name,10) from country where code = 'ALB';
 
-select code,left(name,10), population from country where surfacearea > 1000000 and surfacearea < 4000000;
+     select code,left(name,10), population from country where surfacearea > 1000000 and surfacearea < 4000000;
 
-select code,left(name,10), population from country where surfacearea between 1000000 and 4000000;
+     select code,left(name,10), population from country where surfacearea between 1000000 and 4000000;
 
-select name, district from city where name like 'Ky%';
+     select name, district from city where name like 'Ky%';
 
-select name, district from city where name like '__i%';
+     select name, district from city where name like '__i%';
 
-select name, population from city where name in ('Kyiv', 'Lviv');
+     select name, population from city where name in ('Kyiv', 'Lviv');
 
-select name, population from city order by name desc limit 50; 
+     select name, population from city order by name desc limit 50; 
 
-select name, population from city order by population  limit 50;  
+     select name, population from city order by population  limit 50;  
 
-select name, population from city order by population  desc limit 50;
+     select name, population from city order by population  desc limit 50;
 
-select name, population from city order by rand()   limit 5;
+     select name, population from city order by rand()   limit 5;
 
-select name, population from city order by rand()  desc limit 5;
+     select name, population from city order by rand()  desc limit 5;
 
-select continent from country group by continent;
+     select continent from country group by continent;
 
-select continent, sum(population) from country group by 1;
+     select continent, sum(population) from country group by 1;
 
-select continent, region, sum(population) from country order by 1,2 group by 1,2;
+     select continent, region, sum(population) from country order by 1,2 group by 1,2;
 
-select continent, region, sum(population) from country group by 1,2 order by 1,2;
+     select continent, region, sum(population) from country group by 1,2 order by 1,2;
 
-select continent, region, sum(population) from country group by 1,2 with rollup;
+     select continent, region, sum(population) from country group by 1,2 with rollup;
 
-select continent, sum(population) from country group by 1 having sum(population) > 400000000;
+     select continent, sum(population) from country group by 1 having sum(population) > 400000000;
 
-select continent, sum(population)  into outfile 'c:/mysql/query.txt' from country group by 1 having sum(population) > 400000000;
+     select continent, sum(population)  into outfile 'c:/mysql/query.txt' from country group by 1 having sum(population) > 400000000;
 
-select sum(population) into @count from country;
-select @count;
+     select sum(population) into @count from country;
+     select @count;
 
 ## insert  ... 
 **************************************************
@@ -226,88 +226,88 @@ select @count;
                               studentName varchar(45) not null
                     ) ;
 
-insert  into student values (null, 'student1'),
-(null,'Student2'),
- (null,'Student3'),
-(null,'Student4'),
-(null,'Student5'),
-(null,'Student6');
+     insert  into student values (null, 'student1'),
+     (null,'Student2'),
+     (null,'Student3'),
+     (null,'Student4'),
+     (null,'Student5'),
+     (null,'Student6');
 
-select * from student;
+     select * from student;
 *****************************************************************************
-                    create table teacher(
-                              teacherID int not null auto_increment primary key, 
-                              teacherName varchar(45) not null 
-                         )  ;  
-insert  into teacher values (null, 'teacher1'),
-(null,'teacher2'),
- (null,'teacher3'),
-(null,'teacher4'),
-(null,'teacher5'),
-(null,'teacher6'); 
+                         create table teacher(
+                                   teacherID int not null auto_increment primary key, 
+                                   teacherName varchar(45) not null 
+                              )  ;  
+     insert  into teacher values (null, 'teacher1'),
+     (null,'teacher2'),
+     (null,'teacher3'),
+     (null,'teacher4'),
+     (null,'teacher5'),
+     (null,'teacher6'); 
 
-select * from teacher;
+     select * from teacher;
 *****************************************************************************
-CREATE TABLE IF NOT EXISTS `ostapenkot4`.`LESSON` (
-  `lessonID` INT NOT NULL AUTO_INCREMENT,
-  `lessonNAME` VARCHAR(45) NOT NULL,
-  `STUDENT_studentID` INT NOT NULL,
-  `TEACHER_teacherID` INT NOT NULL,
-  PRIMARY KEY (`lessonID`, `TEACHER_teacherID`),
+     CREATE TABLE IF NOT EXISTS `ostapenkot4`.`LESSON` (
+     `lessonID` INT NOT NULL AUTO_INCREMENT,
+     `lessonNAME` VARCHAR(45) NOT NULL,
+     `STUDENT_studentID` INT NOT NULL,
+     `TEACHER_teacherID` INT NOT NULL,
+     PRIMARY KEY (`lessonID`, `TEACHER_teacherID`),
 
-  INDEX `fk_LESSON_STUDENT_idx` (`STUDENT_studentID` ASC) VISIBLE,
-  INDEX `fk_LESSON_TEACHER1_idx` (`TEACHER_teacherID` ASC) VISIBLE,
+     INDEX `fk_LESSON_STUDENT_idx` (`STUDENT_studentID` ASC) VISIBLE,
+     INDEX `fk_LESSON_TEACHER1_idx` (`TEACHER_teacherID` ASC) VISIBLE,
 
-  CONSTRAINT `fk_LESSON_STUDENT`
-    FOREIGN KEY (`STUDENT_studentID`)
-    REFERENCES `ostapenkot4`.`STUDENT` (`studentID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+     CONSTRAINT `fk_LESSON_STUDENT`
+     FOREIGN KEY (`STUDENT_studentID`)
+     REFERENCES `ostapenkot4`.`STUDENT` (`studentID`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
 
-  CONSTRAINT `fk_LESSON_TEACHER1`
-    FOREIGN KEY (`TEACHER_teacherID`)
-    REFERENCES `ostapenkot4`.`TEACHER` (`teacherID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+     CONSTRAINT `fk_LESSON_TEACHER1`
+     FOREIGN KEY (`TEACHER_teacherID`)
+     REFERENCES `ostapenkot4`.`TEACHER` (`teacherID`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION)
 
-select * from lesson;
+     select * from lesson;
 
 
-INSERT INTO lesson (lessonNAME,STUDENT_studentID,TEACHER_teacherID) VALUES ("linux",1,1);
+     INSERT INTO lesson (lessonNAME,STUDENT_studentID,TEACHER_teacherID) VALUES ("linux",1,1);
 
-select * from teacher 
-left join lesson
-on teacher.teacherid=lesson.teacher_teacherid;
+     select * from teacher 
+     left join lesson
+     on teacher.teacherid=lesson.teacher_teacherid;
 
-select user from mysql.user;
+     select user from mysql.user;
 
-INSERT INTO student select null, user from mysql.user;
+     INSERT INTO student select null, user from mysql.user;
 
-load data 
-          infile 'c:/mysql/folder/data.txt' 
-          into table  student
-          fields terminated by ','
-          lines terminated by '\n'
+     load data 
+               infile 'c:/mysql/folder/data.txt' 
+               into table  student
+               fields terminated by ','
+               lines terminated by '\n'
 
-select * from student order by studentid desc limit 5;
+     select * from student order by studentid desc limit 5;
 
 ## update  & replace
 
-UPDATE  student
-    SET studentName = studentName +'100'
-    WHERE studentID = 1;
+     UPDATE  student
+     SET studentName = studentName +'100'
+     WHERE studentID = 1;
 
-select * from student;
+     select * from student;
 
-UPDATE  teacher
-    SET teacherName = column (teacherName) +'100'
-    WHERE teacherID = 1;
-select * from teacher;
+     UPDATE  teacher
+     SET teacherName = column (teacherName) +'100'
+     WHERE teacherID = 1;
+     select * from teacher;
 
- REPLACE INTO student VALUES (2, 'student20000');
- select * from student;
+     REPLACE INTO student VALUES (2, 'student20000');
+     select * from student;
 
-  REPLACE INTO teacher VALUES (2, 'teacher2220000');
- select * from teacher where teacherID = 2;
+     REPLACE INTO teacher VALUES (2, 'teacher2220000');
+     select * from teacher where teacherID = 2;
 
  ## delete  & load XML
