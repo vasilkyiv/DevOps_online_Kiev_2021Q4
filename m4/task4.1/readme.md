@@ -311,3 +311,87 @@ Data Definition Language (DDL) – это группа операторов оп
      select * from teacher where teacherID = 2;
 
  ## delete  & load XML
+
+     mysql -uroot -pmysql ostapenkot4 --xml -e 'SELECT * FROM ostapenkot4.student' > c:/mysql/folder/student.xml
+
+     mysql -uroot -pmysql ostapenkot4 --html -e 'SELECT * FROM ostapenkot4.student' > c:/mysql/folder/student.html
+
+     delete from student 
+     where studentid = '3';
+     select * from student;
+
+         delete from student 
+         order by studentid desc
+          limit  1;
+          
+     select  studentid
+     from student
+     order by studentid desc
+     limit 5;
+
+     LOAD XML INFILE 'c:/mysql/folder/student.xml' INTO TABLE student;
+************************************
+## functions
+# [man](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html)
+
+select avg(LifeExpectancy) from country;
+
+select count(LifeExpectancy) from country;
+
+select count(code) from country;
+
+select count(*) from country;
+
+select count(distinct continent) from country;
+
+select group_concat(name)
+from country
+where population between 10000 and 50000;
+
+show warnings;
+
+select max(surfacearea) from country;
+
+select name, max(surfacearea) 
+from country
+group by name;
+
+select continent, region, max(surfacearea) 
+from country
+group by 1,2;
+
+select name, surfacearea 
+from country
+order by 2 desc 
+limit 1;
+
+select min(surfacearea) from country;
+
+select continent,  sum(surfacearea) 
+from country
+group by continent;
+
+## forign key
+# [man](https://dev.mysql.com/doc/refman/8.0/en/create-index.html)
+
+https://www.youtube.com/watch?v=4lYs-LsgY0c
+
+
+
+
+
+
+
+
+
+
+************************************
+# DCL – Data Control Language
+Data Control Language (DCL) – группа операторов определения доступа к данным. Иными словами, это операторы для управления разрешениями, с помощью них мы можем разрешать или запрещать выполнение определенных операций над объектами базы данных.
+
+Сюда входят:
+
+### GRANT – предоставляет пользователю или группе разрешения на определённые операции с объектом;
+### REVOKE – отзывает выданные разрешения;
+### DENY– задаёт запрет, имеющий приоритет над разрешением.
+*************************************
