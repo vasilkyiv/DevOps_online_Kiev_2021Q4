@@ -572,3 +572,37 @@ from country inner join countrylanguage
 on (code = countrycode)
 where name = 'Canada'
 order by 2 desc;
+
+******************************
+use ostapenkot4;
+CREATE TABLE articles (
+          id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+          title VARCHAR(200),
+          body TEXT,
+          FULLTEXT (title,body)
+        ) ENGINE=InnoDB;
+
+ INSERT INTO articles (title,body) VALUES
+        ('MySQL Tutorial','DBMS stands for DataBase ...'),
+        ('How To Use MySQL Well','After you went through a ...'),
+        ('Optimizing MySQL','In this tutorial, we show ...'),
+        ('1001 MySQL Tricks','1. Never run mysqld as root. 2. ...'),
+        ('MySQL vs. YourSQL','In the following database comparison ...'),
+        ('MySQL Security','When configured properly, MySQL ...');
+
+SELECT * FROM articles
+where match (title,body)
+against ('database' in natural language mode);
+
+SELECT id,left(title,10),left(body,20)
+FROM articles
+where match (title,body)
+against ('following' in natural language mode);
+
+CREATE TABLE my_stopwords(value VARCHAR(30)) ENGINE = INNODB;
+INSERT INTO my_stopwords(value) VALUES ('system');
+SET GLOBAL innodb_ft_server_stopword_table = 'ostapenkot4/my_stopwords';
+
+ CREATE FULLTEXT INDEX idx ON opening_lines(title, body);
+
+ https://www.youtube.com/watch?v=auzGI_qal40
