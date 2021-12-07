@@ -372,26 +372,203 @@ from country
 group by continent;
 
 ## forign key
-# [man](https://dev.mysql.com/doc/refman/8.0/en/create-index.html)
+# [man](https://dev.mysql.com/doc/refman/8.0/en/create-index.html) [man](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html)
+***************************************
+drop tables if not exist parent;
+drop tables if not exist child;
+
+CREATE TABLE parent (
+    id INT NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+CREATE TABLE child (
+    id INT, parent_id INT, INDEX par_ind (parent_id), 
+    FOREIGN KEY (parent_id) REFERENCES parent(id) ON DELETE CASCADE
+) ENGINE=INNODB;
+
+insert into parent values (234), (238);
+insert into child values (1,234), (2,234), (3,238);
+
+select * from parent;
+select * from child;
+
+delete from child where id=3;
+delete from parent where id=234;
+***************************************
+
+drop table if exists parent;
+drop table if  exists child;
+
+CREATE TABLE parent (
+    id INT NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+CREATE TABLE child (
+    id INT,
+    parent_id INT, INDEX par_ind (parent_id), 
+    FOREIGN KEY (parent_id)  REFERENCES parent(id) ON DELETE RESTRICT 
+) ENGINE=INNODB;
+
+insert into parent values (234), (238);
+insert into child values (1,234), (2,234), (3,238);
+
+select * from parent;
+select * from child;
+
+delete from child where id=3;
+delete from parent where id=234;
+
+show create table child;
+*****************************************
+drop table if exists parent;
+drop table if  exists child;
+
+CREATE TABLE parent (
+    id INT NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+CREATE TABLE child (
+    id INT,
+    parent_id INT, INDEX par_ind (parent_id), 
+    FOREIGN KEY (parent_id)  REFERENCES parent(id) ON DELETE set null 
+) ENGINE=INNODB;
+
+insert into parent values (234), (238);
+insert into child values (1,234), (2,234), (3,238);
+
+select * from parent;
+select * from child;
+
+delete from child where id=3;
+delete from parent where id=234;
+
+show create table child;
 
 https://www.youtube.com/watch?v=4lYs-LsgY0c
 
-
-
-
-
-
-
-
-
+https://www.youtube.com/watch?v=fiO9XNOakf8&t=217s
 
 ************************************
-# DCL – Data Control Language
-Data Control Language (DCL) – группа операторов определения доступа к данным. Иными словами, это операторы для управления разрешениями, с помощью них мы можем разрешать или запрещать выполнение определенных операций над объектами базы данных.
+# JOIN
+select code, name, capital
+from country
+order by rand()
+limit 1;
 
-Сюда входят:
+ SAU  | Saudi Arabia |    3173
 
-### GRANT – предоставляет пользователю или группе разрешения на определённые операции с объектом;
-### REVOKE – отзывает выданные разрешения;
-### DENY– задаёт запрет, имеющий приоритет над разрешением.
-*************************************
+
+select id, ci.name
+from city ci inner join country co
+on id = capital 
+where co.name = 'Turkey';
+
+select id, ci.countrycode, ci.name
+from city ci inner join country co
+on id = capital 
+where co.name = 'Turkey';
+
+select language
+from city ci inner join countrylanguage cl
+using (countrycode)
+where ci.name = 'Ankara';
+
+************************************
+CREATE TABLE costumer (
+    id INT NOT NULL,
+    firstName varchar(100),
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+CREATE TABLE order (
+    id INT,
+    costumer_id INT, INDEX costumer_ind (costumer_id), 
+    FOREIGN KEY (costumer_id)  REFERENCES costumer(id) ON DELETE set null 
+) ENGINE=INNODB;
+
+**********************************
+use world;
+CREATE TABLE costumer (
+    idcostumer INT auto_increment NOT NULL,
+    firstName varchar(100),
+    PRIMARY KEY (idcostumer)
+) ENGINE=INNODB;
+
+CREATE TABLE `order` (
+    idorder INT auto_increment,
+    costumer_id INT, 
+    PRIMARY KEY (idorder)
+) ENGINE=INNODB;
+desc costumer;
+desc `order`;
+
+select id, ci.name 
+from city ci inner join country co
+on id = capital 
+where co.name = 'Turkey';
+
+select id, ci.name 
+from city ci inner join country co
+using id = capital 
+where co.name = 'Turkey';
+
+select id, countrycode, ci.name 
+from city ci inner join country co
+on id = capital 
+where co.name = 'Turkey';
+
+select language 
+from city ci inner join countrylanguage co
+using (countrycode)
+where ci.name = 'Ankara';
+
+********************** 
+
+use ostapenkot4;
+
+drop table if exists costomer; 
+drop table if exists `order`; 
+
+CREATE TABLE costomer (
+    idcostomer INT auto_increment NOT NULL,
+    firstName varchar(100),
+    PRIMARY KEY (idcostomer)
+) ENGINE=INNODB;
+
+CREATE TABLE `order` (
+    idorder INT auto_increment,
+    costomer_id INT, 
+    PRIMARY KEY (idorder)
+) ENGINE=INNODB;
+desc costomer;
+desc `order`;
+
+insert into costomer(firstname) 
+values ('Vasia'),('Petia'),('Kolia');
+
+insert into `order`(costomer_id) 
+values (1),(1),(3),(4);
+
+select * from costomer;
+select * from `order`;
+
+select * 
+from costomer left join `order`
+on costomer_id =  idcostomer;
+
+select * 
+from costomer inner join `order`
+on costomer_id =  idcostomer;
+
+select * 
+from costomer right join `order`
+on costomer_id =  idcostomer;
+
+select language, Percentage
+from country inner join countrylanguage 
+on (code = countrycode)
+where name = 'Canada'
+order by 2 desc;
