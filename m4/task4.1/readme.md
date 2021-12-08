@@ -601,8 +601,313 @@ against ('following' in natural language mode);
 
 CREATE TABLE my_stopwords(value VARCHAR(30)) ENGINE = INNODB;
 INSERT INTO my_stopwords(value) VALUES ('system');
-SET GLOBAL innodb_ft_server_stopword_table = 'ostapenkot4/my_stopwords';
+SET GLOBAL innodb_ft_server_stopword_table = 'world/my_stopwords';
 
- CREATE FULLTEXT INDEX idx ON opening_lines(title, body);
+drop  INDEX `title` ON articles;
+CREATE FULLTEXT INDEX `title` ON articles(title, body);
 
- https://www.youtube.com/watch?v=auzGI_qal40
+ https://www.youtube.com/watch?v=auzGI_qal40use 
+
+ # Підготовлені запроси
+ https://www.youtube.com/watch?v=q1OlBnn0m50
+
+ https://dev.mysql.com/doc/refman/5.7/en/sql-statements.html
+ https://dev.mysql.com/doc/refman/5.7/en/sql-prepared-statements.html
+
+PREPARE stmt1 FROM 'SELECT SQRT(POW(?,2) + POW(?,2)) AS hypotenuse';
+SET @a = 3;
+SET @b = 4;
+EXECUTE stmt1 USING @a, @b;
+
+DEALLOCATE PREPARE stmt1;
+
+PREPARE stmt1 FROM 'SELECT SQRT(POW(?,2) + POW(?,2)) AS hypotenuse';
+SET @a = 6;
+SET @b = 8;
+EXECUTE stmt1 USING @a, @b;
+
+use world;
+SET @table = 'country';
+SET @query = concat('select count(*) from ', @table) ;
+PREPARE stmt2 FROM @query;
+EXECUTE stmt2;
+DEALLOCATE PREPARE stmt2;
+
+ # create event
+
+ https://dev.mysql.com/doc/refman/8.0/en/create-event.html
+
+drop table goods;
+ create table goods (
+      id int primary key auto_increment,
+      title varchar(100),
+      price decimal(6,2)
+ );
+
+ insert into goods values
+ (null,'Tovar1',100), 
+ (null,'Tovar2',200), 
+ (null,'Tovar3',300), 
+ (null,'Tovar4',400),
+ (null,'Tovar5',500);
+ 
+ select * from goods;
+
+ CREATE EVENT myevent
+    ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 second
+    DO
+      UPDATE ostapenkot4.goods SET price = price + 1.1;
+      
+ select * from goods;
+ show variables like '%event_scheduler%';
+
+ set global event_scheduler = 0;
+ show variables like '%event_scheduler%';
+
+  set global event_scheduler = 1;
+ show variables like '%event_scheduler%';
+
+  CREATE EVENT myevent2
+    ON SCHEDULE every 10 second
+    DO
+      UPDATE ostapenkot4.goods SET price = price + 1.1;
+
+ select * from goods;
+alter event myevent2 disable;
+
+ select * from goods;
+alter event myevent2 enable;
+ select * from goods;
+
+ drop event myevent;
+ drop event myevent2;
+
+show variables like '%event_scheduler%';
+
+ drop event if exists myevent;
+  delimiter |
+  CREATE EVENT myevent
+    ON SCHEDULE every 10 second
+    DO
+ begin
+     set @seconds = second(now());
+     set @query = concat('select * into outfile \'C:/mysql/folder/goods',@seconds,'.txt\' from goods');
+     prepare stmt from  @query;
+     execute stmt;
+ end|
+ delimiter ;
+
+
+  # union
+
+select 'first';
+select 'second';
+
+select 'first'
+union
+select 'second';
+
+use world;
+
+select c1.name
+from city c1 inner join city c2
+on c1.name = c2.name
+where c1.id <> c2.id;
+
+select name 
+from world.city
+where name like 'San Jose'
+union all
+select 'second'
+union all
+select name 
+from world.city
+where name like 'Victoria';
+
+
+select name 
+from world.city
+where name like 'San Jose'
+union all
+select 'second'
+union all
+(select name 
+from world.city
+where name like 'Victoria'
+limit 2);
+
+select 'aaaaaaaaaaa'
+union
+select 'bbbbbbbbbbbbbbbbbbbb'
+union
+select 'ccccccccccccc'
+order by 1;
+
+(select name from city order by name limit 5)
+union
+(select name from country order by name desc limit 5);
+
+
+(
+select name 
+from city 
+order by name 
+limit 5
+)
+union
+(
+select name into outfile 'C:/mysql/folder/test18.txt'
+from country 
+order by name
+desc limit 5);
+
+
+(
+select name, population 
+from city 
+order by name 
+limit 5
+)
+union
+(
+select name, 23123
+from country 
+order by name
+desc limit 5
+)
+union
+(
+   select 'streeng', 1000  
+);
+
+
+  # подзапроси
+  https://dev.mysql.com/doc/refman/8.0/en/subqueries.html
+
+  use world;
+
+  select name 
+  from country
+  where code = (
+       select countrycode
+       from city
+       order by population desc
+       limit 1
+  );
+
+  select name 
+  from country
+  where code in (
+       select countrycode 
+       from city
+       where population > 5e6
+       order by population desc
+  );
+
+    select name 
+  from country
+  where code = any (
+       select countrycode 
+       from city
+       where population > 5e6
+       order by population desc
+  );
+
+
+select countrycode, name
+from city
+order by rand()
+limit 2;
+
+-- TUR
+-- USA
+
+    select name, population
+  from city
+  where population > any (
+       select population 
+       from city
+       where countrycode = 'TUR'
+) and countrycode = 'USA';
+
+   select name, population
+  from city 
+  where countrycode = 'USA';
+
+
+      select name, population
+  from city
+  where population > all (
+       select population 
+       from city
+       where countrycode = 'USA'
+) and countrycode = 'TUR';
+
+
+      select name, population
+  from city
+  where population < all (
+       select population 
+       from city
+       where countrycode = 'TUR'
+) and countrycode = 'USA';
+
+  # create view
+https://dev.mysql.com/doc/refman/8.0/en/create-view.html
+
+use world;
+select database();
+show tables;
+
+
+select code, name, population
+from country
+order by 3 desc
+limit 10;
+
+drop view if exists country_top_population;
+create view country_top_population
+as
+select code, name, population
+from country
+order by 3 desc
+limit 10;
+
+show tables;
+show create table  country_top_population;
+
+select * from   country_top_population;
+
+drop view if exists asia;
+create view asia
+as
+select * 
+from country
+where continent = 'Asia';
+
+select name, population from asia;
+
+select * from country
+order by rand() limit 1;
+
+select name, population
+from country
+where code = 'SJM';
+
+drop view if exists europe;
+create view europe
+as
+select *
+from country
+where continent = 'europe';
+
+update europe
+set population = population + 1e6
+where code = 'DEU';
+
+select name, population
+from europe
+where code = 'DEU';
+
+ # процедури та функції
+https://www.youtube.com/watch?v=bMLOgmsp588
