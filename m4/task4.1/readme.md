@@ -911,3 +911,130 @@ where code = 'DEU';
 
  # процедури та функції
 https://www.youtube.com/watch?v=bMLOgmsp588
+
+https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html
+
+drop procedure if exists sf_foo;
+delimiter $$
+create procedure sp_foo()
+begin
+     select count(*)
+     from city;
+end$$
+delimiter ;
+call sp_foo();
+
+
+
+drop procedure if exists get_city_by_code();
+delimiter $$
+create procedure get_count_city_by(in c char(3))
+begin
+     select count(*)
+     from city
+     where countrycode = c;
+end$$
+delimiter ;
+call get_count_city_by('USA');
+
+
+drop procedure if exists get_city_by_code();
+delimiter $$
+create procedure get_city_by_code(in c char(3), out num smallint)
+begin
+     select count(*)
+     from city
+     where countrycode = c;
+end$$
+delimiter ;
+call get_city_by_code('USA', @some);
+select @some;
+
+
+drop function if exists get_city_by_code;
+delimiter $$
+create function get_city_by_code(c char(3))
+returns smallint
+DETERMINISTIC
+begin
+     declare num smallint default 0;
+     select count(*) into num
+     from city
+     where countrycode = c;
+     return num;
+end$$
+delimiter ;
+
+select get_city_by_code('CHN');
+
+\s
+\h show
+\h create function
+
+SHOW PROCEDURE CODE get_city_by_code;
+
+use information_schema;
+show tables;
+
+desc routines;
+desc routines\G;
+
+
+--show all 
+select 
+ROUTINE_NAME,
+ROUTINE_TYPE,
+ROUTINE_DEFINITION
+from information_schema.routines
+where ROUTINE_SCHEMA = 'world' and 
+ROUTINE_TYPE = 'PROCEDURE' ;
+
+ # процедури та функції part 2
+
+ https://dev.mysql.com/doc/refman/8.0/en/functions.html
+
+ https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
+ https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html
+ https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html
+
+
+ select concat(Name,'-', Continent) 
+ from country;
+
+  select 
+  floor(lifeexpectancy), 
+  round(lifeexpectancy), 
+  ceil(lifeexpectancy) 
+  from country
+  limit 10;
+
+  SELECT DAYNAME('2021-12-29');
+
+  show variables like '%lc%';
+
+  set lc_time_names='ru_RU';
+  show variables like '%lc%';
+
+    set lc_time_names='en_US';
+  show variables like '%lc%';
+
+      set lc_time_names='en_US';
+  show variables like '%lc%';
+
+select if(3,4,5);
+
+
+select         
+          if (population < 2e7,    
+                    'small ',      
+                    if(population >= 1e8, 'big', 'medium')) 'krainy',
+ count(*)
+from country
+group  by 1;
+
+
+select         
+          if (population < 2e7,    
+                    'small ',      
+                    if(population >= 1e8, 'big', 'medium')) 'krainy'
+from country;
