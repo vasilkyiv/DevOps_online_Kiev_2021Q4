@@ -1038,3 +1038,192 @@ select
                     'small ',      
                     if(population >= 1e8, 'big', 'medium')) 'krainy'
 from country;
+
+ # if case
+
+https://www.youtube.com/watch?v=IaIHUNo5TII&list=PLOQDek48BpZFeW02dfJM77FY4Fp5ilJ6n&index=23
+
+https://dev.mysql.com/doc/refman/5.7/en/flow-control-statements.html
+
+
+drop function if exists fizzbuzz;
+DELIMITER |
+CREATE FUNCTION fizzbuzz(n smallint)
+  RETURNS VARCHAR(1000)
+DETERMINISTIC
+  BEGIN
+     set @str = '';
+
+     if n % 3 = 0
+          then set @str = concat(@str, 'fizz');
+     end if;
+    if n % 5 = 0
+          then set @str = concat(@str, 'buzz');
+     end if;
+    if n % char_length(@str)
+          then return @str;
+     end if;
+
+     return n;
+  END |
+DELIMITER ;
+
+select fizzbuzz(3);
+select fizzbuzz(5);
+select fizzbuzz(15);
+select fizzbuzz(7);
+
+
+
+
+drop function if exists fizzbuzz2;
+DELIMITER |
+CREATE FUNCTION fizzbuzz2(n smallint)
+  RETURNS VARCHAR(1000)
+DETERMINISTIC
+  BEGIN
+     set @str = '';
+
+CASE 1
+      WHEN n % 3 = 0 and n % 5 = 0 THEN set @str = concat(@str, 'fizzbuzz');
+      WHEN n % 3 = 0 THEN set @str = concat(@str, 'fizz');
+      WHEN n % 5 = 0 THEN set @str = concat(@str, 'buzz');
+      else set @str = n;
+END CASE;
+     
+ return @str;
+END |
+DELIMITER ;
+
+select fizzbuzz2(3);
+select fizzbuzz2(5);
+select fizzbuzz2(15);
+select fizzbuzz2(7);
+
+# цикли
+
+drop function if exists fib;
+delimiter //
+CREATE function fib(n INT)
+returns varchar(5000)
+DETERMINISTIC
+BEGIN
+         SET @x1 = 0;
+         SET @x2 = 1;
+         SET @x3 = 0;
+         set @i = 2;
+
+create temporary table tmp(
+     num int
+);
+          insert into tmp value(@x1);
+          insert into tmp value(@x2);
+         REPEAT
+         
+           SET @x3 = @x2 + @x1;
+           insert into tmp value(@x3);
+           set @x1=@x2;
+           set @x2=@x3;
+           set @i=@i+1;
+           UNTIL @i = n END REPEAT;
+
+         select group_concat(num) into @result from tmp;
+          drop temporary table tmp;
+
+         return @result;
+END//
+delimiter ;
+
+select fib(10);
+
+
+drop function if exists fib2;
+delimiter //
+CREATE function fib2(n INT)
+returns varchar(5000)
+DETERMINISTIC
+BEGIN
+         SET @x1 = 0;
+         SET @x2 = 1;
+         SET @x3 = 0;
+         set @i = 2;
+
+create temporary table tmp(
+     num int
+);
+          insert into tmp value(@x1);
+          insert into tmp value(@x2);
+
+WHILE @i < n DO
+    
+           SET @x3 = @x2 + @x1;
+           insert into tmp value(@x3);
+           set @x1=@x2;
+           set @x2=@x3;
+           set @i=@i+1;
+END WHILE;
+         
+         select group_concat(num) into @result from tmp;
+          drop temporary table tmp;
+
+         return @result;
+END//
+delimiter ;
+
+select fib2(10);
+
+************************************
+************************************
+
+# DCL – Data Control Language
+Data Control Language (DCL) – группа операторов определения доступа к данным. Иными словами, это операторы для управления разрешениями, с помощью них мы можем разрешать или запрещать выполнение определенных операций над объектами базы данных.
+
+Сюда входят:
+
+### GRANT – предоставляет пользователю или группе разрешения на определённые операции с объектом;
+### REVOKE – отзывает выданные разрешения;
+### DENY– задаёт запрет, имеющий приоритет над разрешением.
+
+8. Create a database of new users with different privileges. Connect to the database
+
+CREATE USER 'ovo'@'192.168.138.69' IDENTIFIED BY 'mysql';
+CREATE USER 'ovo'@'localhost' IDENTIFIED BY 'mysql';
+GRANT ALL PRIVILEGES ON *.* TO 'ovo'@'localhost';
+GRANT ALL ON *.* TO 'ovo'@'192.168.138.69';
+
+GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
+ALTER USER 'jeffrey'@'localhost' WITH MAX_QUERIES_PER_HOUR 90;
+
+create USER 'root'@'192.168.138.69' IDENTIFIED BY 'mysql';
+GRANT ALL PRIVILEGES ON *.* TO 'ovo'@'192.168.138.69';
+
+SELECT host FROM mysql.user WHERE User = 'root';
+SELECT host FROM mysql.user WHERE User = 'ovo';
+CREATE USER 'root'@'192.168.138.69' IDENTIFIED BY 'mysql';
+
+CREATE USER 'root'@'192.168.138.161' IDENTIFIED BY 'mysql';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address';
+
+FLUSH PRIVILEGES;
+
+****************************************
+
+# PART 2
+
+> 10.Make backup of your database.
+
+mysqldump.exe -uroot -pmysql --all-databases > 2.sql
+
+11.Delete the table and/or part of the data in the table. 
+12.Restore your database.
+
+mysql -uroot -pmysql   <c:\mysql\folder\2.sql
+
+13.Transfer your local database to RDS AWS.
+
+mysql -uroot -p -h ostapenko.cj200uvdjahq.eu-central-1.rds.amazonaws.com --all-databases > awsdump.sql
+
+https://aws.amazon.com/getting-started/hands-on/move-to-managed/migrate-my-sql-to-amazon-rds/
+
+https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:
+
