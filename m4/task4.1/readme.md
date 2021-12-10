@@ -139,7 +139,8 @@ Data Definition Language (DDL) – это группа операторов оп
 
 *******************************
 ### mysql --console -uroot -p < c:\mysql\world.sql 
-### - [importing world.sql database from https://dev.mysql.com/doc/index-other.html](https://dev.mysql.com/doc/index-other.html)
+
+###  [importing world.sql database from https://dev.mysql.com/doc/index-other.html](https://dev.mysql.com/doc/index-other.html)
 
 ### SELECT
 
@@ -332,6 +333,7 @@ Data Definition Language (DDL) – это группа операторов оп
      LOAD XML INFILE 'c:/mysql/folder/student.xml' INTO TABLE student;
 ************************************
 ## functions
+
 # [man](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html)
 
 select avg(LifeExpectancy) from country;
@@ -372,7 +374,10 @@ from country
 group by continent;
 
 ## forign key
-# [man](https://dev.mysql.com/doc/refman/8.0/en/create-index.html) [man](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html)
+
+# [man](https://dev.mysql.com/doc/refman/8.0/en/create-index.html) 
+
+# [man](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html)
 ***************************************
 drop tables if not exist parent;
 drop tables if not exist child;
@@ -447,9 +452,9 @@ delete from parent where id=234;
 
 show create table child;
 
-https://www.youtube.com/watch?v=4lYs-LsgY0c
+ # [videotutorial](https://www.youtube.com/watch?v=4lYs-LsgY0c)
 
-https://www.youtube.com/watch?v=fiO9XNOakf8&t=217s
+ # [videotutorial](https://www.youtube.com/watch?v=fiO9XNOakf8&t=217s)
 
 ************************************
 # JOIN
@@ -606,13 +611,13 @@ SET GLOBAL innodb_ft_server_stopword_table = 'world/my_stopwords';
 drop  INDEX `title` ON articles;
 CREATE FULLTEXT INDEX `title` ON articles(title, body);
 
- https://www.youtube.com/watch?v=auzGI_qal40use 
+  # [videotutorial](https://www.youtube.com/watch?v=auzGI_qal40use) 
 
  # Підготовлені запроси
- https://www.youtube.com/watch?v=q1OlBnn0m50
+ # [videotutorial](https://www.youtube.com/watch?v=q1OlBnn0m50)
 
- https://dev.mysql.com/doc/refman/5.7/en/sql-statements.html
- https://dev.mysql.com/doc/refman/5.7/en/sql-prepared-statements.html
+ # [man](https://dev.mysql.com/doc/refman/5.7/en/sql-statements.html)
+ # [man](https://dev.mysql.com/doc/refman/5.7/en/sql-prepared-statements.html)
 
 PREPARE stmt1 FROM 'SELECT SQRT(POW(?,2) + POW(?,2)) AS hypotenuse';
 SET @a = 3;
@@ -635,7 +640,7 @@ DEALLOCATE PREPARE stmt2;
 
  # create event
 
- https://dev.mysql.com/doc/refman/8.0/en/create-event.html
+ # [man] (https://dev.mysql.com/doc/refman/8.0/en/create-event.html)
 
 drop table goods;
  create table goods (
@@ -782,7 +787,7 @@ union
 
 
   # подзапроси
-  https://dev.mysql.com/doc/refman/8.0/en/subqueries.html
+ # [man](https://dev.mysql.com/doc/refman/8.0/en/subqueries.html)
 
   use world;
 
@@ -853,7 +858,9 @@ limit 2;
 ) and countrycode = 'USA';
 
   # create view
-https://dev.mysql.com/doc/refman/8.0/en/create-view.html
+
+  
+# [man](https://dev.mysql.com/doc/refman/8.0/en/create-view.html)
 
 use world;
 select database();
@@ -910,9 +917,9 @@ from europe
 where code = 'DEU';
 
  # процедури та функції
-https://www.youtube.com/watch?v=bMLOgmsp588
+[videotutorial](https://www.youtube.com/watch?v=bMLOgmsp588
 
-https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html
+# [man](https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html)
 
 drop procedure if exists sf_foo;
 delimiter $$
@@ -991,11 +998,13 @@ ROUTINE_TYPE = 'PROCEDURE' ;
 
  # процедури та функції part 2
 
- https://dev.mysql.com/doc/refman/8.0/en/functions.html
+# [man](https://dev.mysql.com/doc/refman/8.0/en/functions.html)
 
- https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
- https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html
- https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html
+ # [man](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html)
+
+ # [man](https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html)
+ 
+ # [man](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html)
 
 
  select concat(Name,'-', Continent) 
@@ -1041,9 +1050,9 @@ from country;
 
  # if case
 
-https://www.youtube.com/watch?v=IaIHUNo5TII&list=PLOQDek48BpZFeW02dfJM77FY4Fp5ilJ6n&index=23
+# [videotutorial](https://www.youtube.com/watch?v=IaIHUNo5TII&list=PLOQDek48BpZFeW02dfJM77FY4Fp5ilJ6n&index=23)
 
-https://dev.mysql.com/doc/refman/5.7/en/flow-control-statements.html
+# [man](https://dev.mysql.com/doc/refman/5.7/en/flow-control-statements.html)
 
 
 drop function if exists fizzbuzz;
@@ -1184,7 +1193,7 @@ Data Control Language (DCL) – группа операторов определ
 ### REVOKE – отзывает выданные разрешения;
 ### DENY– задаёт запрет, имеющий приоритет над разрешением.
 
-8. Create a database of new users with different privileges. Connect to the database
+> 8. Create a database of new users with different privileges. Connect to the database
 
 CREATE USER 'ovo'@'192.168.138.69' IDENTIFIED BY 'mysql';
 CREATE USER 'ovo'@'localhost' IDENTIFIED BY 'mysql';
@@ -1214,16 +1223,27 @@ FLUSH PRIVILEGES;
 
 mysqldump.exe -uroot -pmysql --all-databases > 2.sql
 
-11.Delete the table and/or part of the data in the table. 
+> 11.Delete the table and/or part of the data in the table. 
 12.Restore your database.
 
 mysql -uroot -pmysql   <c:\mysql\folder\2.sql
 
-13.Transfer your local database to RDS AWS.
+> 13.Transfer your local database to RDS AWS.
 
 mysql -uroot -p -h ostapenko.cj200uvdjahq.eu-central-1.rds.amazonaws.com --all-databases > awsdump.sql
 
-https://aws.amazon.com/getting-started/hands-on/move-to-managed/migrate-my-sql-to-amazon-rds/
+# [man](https://aws.amazon.com/getting-started/hands-on/move-to-managed/migrate-my-sql-to-amazon-rds/)
 
-https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:
+# [man](https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:)
+
+[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+
+
+# PART 3
+
+mysql -uroot -p -h ostapenko.cluster-cj200uvdjahq.eu-central-1.rds.amazonaws.com < C:/mysql/folder/1.sql
+
+mysql -uroot -p -h ostapenko.cluster-cj200uvdjahq.eu-central-1.rds.amazonaws.com
+
+[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
 
