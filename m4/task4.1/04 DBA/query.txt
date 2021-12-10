@@ -1,0 +1,4 @@
+North America	482993000
+Asia	3705025700
+Africa	784475000
+Europe	730074600
