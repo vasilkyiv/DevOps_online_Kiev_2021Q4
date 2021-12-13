@@ -188,7 +188,7 @@
      ls -alh --group-directories-first ~
      ls -lah ~
      ls -la ~
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
 
 # [Part 2](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
 
@@ -369,3 +369,142 @@ concepts;
           cp ~/.bash_history ~/test/labwork2
           ln -P labwork2 PhisicalLink
           ln -s labwork2 SymboliclLink
+
+# [Hard links and soft links in Linux explained](https://www.redhat.com/sysadmin/linking-linux-explained)
+
+Files that are ***hard-linked*** together share the same ***inode*** number.
+
+     [tcarrigan@server demo]$ ls -li link_test /tmp/link_new 
+     2730074 -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 link_test
+     2730074 -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 /tmp/link_new
+
+ >    -  A hard link always points a filename to data on a storage device.
+ >    -  A soft link always points a filename to another filename, which then points to information on a storage device.
+
+     mv PhisicalLink hard_lnk_labwork2
+
+> 7) Using the locate utility, find all files that contain the squid and traceroute
+sequence.
+# [locate command in Linux with Examples](https://www.geeksforgeeks.org/locate-command-in-linux-with-examples/)
+
+     man locate
+     info locate
+     locate --help
+
+     Syntax:
+
+     locate [OPTION]... PATTERN...
+     Exit Status: This command will exit with status 0 if any specified match found. If no match founds or a fatal error encountered, then it will exit with status 1.
+
+     Options:
+
+     -b, –basename : Match only the base name against the specified patterns, which is the opposite of –wholename.
+     -c, –count : Instead of writing file names on standard output, write the number of matching entries only.
+     -d, –database DBPATH : Replace the default database with DBPATH. DBPATH is a : (colon) separated list of database file names. If more than one –database option is specified, the resulting path is a concatenation of the separate paths. An empty database file name is replaced by the default database. A database file name – refers to the standard input. Note that a database can be read from the standard input only once.
+     -e, –existing : Print only entries that refer to files existing at the time locate is run.
+     -L, –follow : When checking whether files exist (if the –existing option is specified), follow trailing symbolic links. This causes bro ken symbolic links to be omitted from the output. This option is the default behavior. The opposite can be specified using –nofollow.
+     -h, –help : Write a summary of the available options to standard output and exit successfully.
+     -i, –ignore-case : Ignore case distinctions when matching patterns.
+     -l, –limit, -n LIMIT : Exit successfully after finding LIMIT entries. If the –count option is specified, the resulting count is also limited to LIMIT.
+     -m, –mmap : Ignored, but included for compatibility with BSD and GNU locate.
+     -P, –nofollow, -H : When checking whether files exist (if the –existing option is specified), do not follow trailing symbolic links. This causes broken symbolic links to be reported like other files.
+     This option is the opposite of –follow.
+
+     -0, –null : Separate the entries on output using the ASCII NUL character instead of writing each entry on a separate line. This option is designed for interoperability with the –null option of GNU xargs.
+     -S, –statistics : Write statistics about each read database to standard output instead of searching for files and exit successfully.
+     -q, –quiet : Write no messages about errors encountered while reading and processing databases.
+     -r, –regexp REGEXP : Search for a basic regexp REGEXP. No PATTERNs are allowed if this option is used, but this option can be specified multiple times.
+     –regex : Interpret all PATTERNs as extended regexps.
+     -s, –stdio : Ignored, for compatibility with BSD and GNU locate.
+     -V, –version : Write information about the version and license of locate on standard output and exit successfully.
+     -w, –wholename : Match only the whole path name against the specified patterns. This option is the default behavior. The opposite can be specified using –basename.
+
+     apt install mlocate-y
+     updatedb
+
+     locate -A squid
+     locate -A traceroute
+
+     locate -i -0 *sample.txt*
+     locate -i *SAMPLE.txt*
+     locate -c [.txt]*
+     locate "*.html" -n 20
+     locate sample.txt 
+
+[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
+
+> 8) Determine which partitions are mounted in the system, as well as the types of
+these partitions.
+
+[Which partition is mounted to where? [duplicate])](https://unix.stackexchange.com/questions/192273/which-partition-is-mounted-to-where/192279)
+
+[lsblk Command to list block device on Linux)](https://www.cyberciti.biz/faq/linux-list-disk-partitions-command/)
+
+[19. Partitions, File Systems, Formatting, Mounting](https://rute.gerdesas.com/node22.html)
+     
+     man fdisk
+     man lsblk
+     man sfdisk
+     man parted
+
+     lsblk
+     lsblk /dev/DEVICE
+     lsblk /dev/sda
+     lsblk -l
+     lsblk -d | grep disk
+
+     lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT
+
+     hwinfo | more
+     hwinfo --block | more
+     hwinfo --block --short
+     inxi -P
+     inxi -p | more
+
+     lsblk -f -m | grep ext4
+     lsblk -f -m
+     blkid
+
+> 9) Count the number of lines containing a given sequence of characters in a given
+file.
+[How to Count lines in a file in UNIX/Linux](https://www.thegeekdiary.com/how-to-count-lines-in-a-file-in-unix-linux/)
+
+     Using “wc -l”
+
+     wc -l [filename]
+     wc -l file01.txt
+     wc -l < file01.txt
+     cat file01.txt | wc -l
+
+     Using awk
+     awk 'END{print NR}' [filename]
+     awk 'END{print NR}' file01.txt
+
+     Using sed
+     sed -n '$=' [filename]
+     sed -n '$=' file01.txt
+
+     Using grep
+     grep -c ".*" [filename]
+     grep -c ".*" file01.txt
+     grep -Hc ".*" [filename]
+     grep -c ^ file01.txt
+     grep -Hc ".*" file01.txt
+
+     Some more commands
+     nl [filename]
+     nl file01.txt
+     nl file01.txt | tail -1 | awk '{print $1}'
+     cat -n file01.txt
+     cat -n file01.txt | tail -1 | awk '{print $1}'
+     perl -lne 'END { print $. }' file01.txt
+
+> 10) Using the ***find*** command, find all files in the ***/etc*** directory containing the
+***host*** character sequence.
+
+[find Command](https://www.ibm.com/docs/en/aix/7.1?topic=f-find-command)
+
+[find command in Linux with examples](https://www.geeksforgeeks.org/find-command-in-linux-with-examples/)
+     
+
+
