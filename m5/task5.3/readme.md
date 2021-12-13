@@ -505,44 +505,6 @@ file.
 [find Command](https://www.ibm.com/docs/en/aix/7.1?topic=f-find-command)
 
 [find command in Linux with examples](https://www.geeksforgeeks.org/find-command-in-linux-with-examples/)
-
-[35 Practical Examples of Linux Find Command](https://www.tecmint.com/35-practical-examples-of-linux-find-command/)
      
-          find . -name tecmint.txt
-          find /home -name tecmint.txt
-          find /home -iname tecmint.txt
-          find / -type d -name Tecmint
-          find . -type f -name tecmint.php
-          find . -type f -name "*.php"
-          find . -type f -perm 0777 -print
-          find / -type f ! -perm 777
-          find / -perm 2644
-          find / -perm 1551
-          find / -perm /u=s
-          find / -perm /g=s
-          find / -perm /u=r
-          find / -perm /a=x
-          find / -type f -perm 0777 -print -exec chmod 644 {} \;
-          find / -type d -perm 777 -print -exec chmod 755 {} \;
-          find . -type f -name "tecmint.txt" -exec rm -f {} \;
-          find . -type f -name "*.txt" -exec rm -f {} \;
-               OR
-          find . -type f -name "*.mp3" -exec rm -f {} \;
-          find /tmp -type f -empty
-          find /tmp -type d -empty
-          find /tmp -type f -name ".*"
-          find / -user root -name tecmint.txt
-          find /home -user tecmint
-          find /home -group developer
-          find /home -user tecmint -iname "*.txt"
-          find / -mtime 50
-          find / -atime 50
-          find / -mtime +50 –mtime -100
-          find / -cmin -60
-          find / -mmin -60
-          find / -amin -60
-          find / -size 50M
-          find / -size +50M -size -100M
-          find / -type f -size +100M -exec rm -f {} \;
-          find / -type f -name *.mp3 -size +10M -exec rm {} \;
+
 
