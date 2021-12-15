@@ -188,6 +188,7 @@
      ls -alh --group-directories-first ~
      ls -lah ~
      ls -la ~
+
 [![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
 
 # [Part 2](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
@@ -277,6 +278,7 @@
      --            Options processing terminator.
 
 > 2) What command can be used to determine the type of file (for example, text or binary)? Give an example.
+
 # [ file command in Linux with examples ](https://www.geeksforgeeks.org/file-command-in-linux-with-examples/)
 
      Syntax:
@@ -290,6 +292,7 @@
      file videosong.mp4
 
 > 3) Master the skills of navigating the file system using relative and absolute paths. How can you go back to your home directory from anywhere in the filesystem?
+
 # [ Navigating your filesystem in the Linux terminal ](https://www.redhat.com/sysadmin/navigating-filesystem-linux-terminal)
 
      You can also always return to your home directory instantly using this shortcut:
@@ -299,6 +302,7 @@
      /home/seth
 
 > 4) Become familiar with the various options for the ls command. Give examples of listing directories using different keys. Explain the information displayed on the terminal using the -l and -a switches.
+
 # [ 15 Basic ‘ls’ Command Examples in Linux ](https://www.tecmint.com/15-basic-ls-command-examples-in-linux/)
 
      info ls
@@ -353,6 +357,7 @@
           rm /home/ovo/info_ebaut_directory
 
 > 6) Perform the following sequence of operations:
+
 # [ What is the difference between a symbolic link and a hard link?](https://stackoverflow.com/questions/185899/what-is-the-difference-between-a-symbolic-link-and-a-hard-link)
 
 - create a subdirectory test in the home directory;
@@ -385,6 +390,7 @@ Files that are ***hard-linked*** together share the same ***inode*** number.
 
 > 7) Using the locate utility, find all files that contain the squid and traceroute
 sequence.
+
 # [locate command in Linux with Examples](https://www.geeksforgeeks.org/locate-command-in-linux-with-examples/)
 
      man locate
@@ -467,6 +473,7 @@ these partitions.
 
 > 9) Count the number of lines containing a given sequence of characters in a given
 file.
+
 [How to Count lines in a file in UNIX/Linux](https://www.thegeekdiary.com/how-to-count-lines-in-a-file-in-unix-linux/)
 
      Using “wc -l”
@@ -546,3 +553,283 @@ file.
           find / -type f -size +100M -exec rm -f {} \;
           find / -type f -name *.mp3 -size +10M -exec rm {} \;
 
+11) List all objects in /etc that contain the ss character sequence. How can I duplicate a similar command using a bunch of grep?
+
+[How To Use grep Command In Linux](https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/)
+
+          man grep
+          grep --help
+          info grep 
+
+          grep 'ss' /etc/*
+          grep -i 'ss' /etc/*
+          grep -R 'ss' /etc/*
+          grep -c 'ss' /etc/*
+
+***Команда Grep***
+          Grep или Global Regular Expression Print – основная программа поиска в Unix-подобных системах, которая может искать любой тип строки в любом файле или списке файлов или даже выводить любую команду.
+
+          В качестве шаблона поиска он использует обычные регулярные выражения, кроме обычных строк. В Basic Regular Expressions (BRE) метасимволы вроде: ‘{‘, ‘}’, ‘(‘, ‘)’, ‘|’, ‘+’, ‘?’ теряют свой смысл и считаются нормальными символами строки и должны быть выделены специальным образом, если их следует рассматривать как специальные символы.
+
+          Кроме того, grep использует алгоритм Boyer-Moore для быстрого поиска любой строки или регулярного выражения.
+
+          1 $ grep -C 0 '(f|g)ile' example.txt
+          2 $ grep -C 0 '\(f\|g\)ile' example.txt
+
+          В примере выше, когда команда запускается без экранирования ‘(‘ ‘)’ и ‘|’, затем grep ищет полную строку, то есть «(f | g) ile» в файле. Но когда специальные символы были экранированы, grep обрабатывает их как метасимволы и ищет слова «file» или «gile» в файле.
+
+***Команда egrep***
+          Egrep или grep -E – это другая версия grep или Extended grep. Эта версия grep эффективна и быстра, когда дело доходит до поиска шаблона регулярных выражений, поскольку она обрабатывает метасимволы как есть и не заменяет их как строки. Egrep использует ERE или Extended Extended Expression.
+
+          В случае egrep, даже если вы не избегаете метасимволы, команда будет относиться к ним как к специальным символам и заменять их своим особым значением вместо того, чтобы рассматривать их как часть строки.
+
+          1 $ egrep -C 0 '(f|g)ile' example.txt
+          2 $ egrep -C 0 '\(f\|g\)ile' example.txt
+
+          Здесь egrep ищет строку «file», когда мета-символы не экранированы, поскольку это означает значение этих символов. Но, когда эти символы стали экранированы, egrep рассматривает их как часть строки и ищет полную строку «(f | g) ile» в файле.
+
+***Команда fgrep***
+          Fgrep или Fixed grep или grep -F – это еще одна версия grep, которая необходима, когда дело доходит до поиска всей строки вместо регулярного выражения, поскольку оно не распознает ни регулярные выражения, ни метасимволы. Для поиска любой строки напрямую выбирайте эту версия grep.
+
+          Fgrep ищет полную строку и не распознает специальные символы как часть регулярного выражения, несмотря на то экранированы символы или нет.
+
+          1 $ fgrep -C 0 '(f|g)ile' example.txt
+          2 $ fgrep -C 0 '\(f\|g\)ile' example.txt
+
+          Когда метасимволы не были экранированы, fgrep искала полную строку «(f | g) ile» в файле, а когда метасимволы стали экранированы, команда fgrep искала «\ (f \ | g \) Ile» все символы которые есть в файле.
+          
+***Вывод***
+          Выше рассмотрены различия между «grep», «egrep» и «fgrep». Несмотря на различия в наборе используемых регулярных выражений и скорости выполнения, параметры командной строки остаются одинаковыми для всех трех версий grep.
+
+> 12) Organize a screen-by-screen print of the contents of the /etc directory. Hint:
+You must use stream redirection operations.
+
+[less command in Linux with Examples](https://www.geeksforgeeks.org/less-command-linux-examples/)
+
+[How to Use Less](https://linuxize.com/post/less-command-in-linux/)
+
+     man less
+     less --help
+     info less
+
+     less [OPTIONS] filename
+     less /usr/share/common-licenses/GPL-3
+     ps aux | less
+
+     When opening a file which content is too large to fit in one page, you will see a single colon (:).
+
+     To go forward to the next page press either the f key or Space bar. If you want to move down for a specific number of lines, type the number followed by the space or f key.
+
+     You can press either the Down arrow or Enter to scroll forward by one line and Up arrow scroll backward by one line.
+
+     To go back to the previous page hit the b key. Move up for a specific number of lines, by typing the number followed by the b key.
+
+     If you want to search for a pattern, type forward slash (/) followed by the pattern you want to search. Once you hit Enter less will search forward for matches. To search backwards use (?) followed by the search pattern.
+
+     When the end of the file is reached, the string (END) is shown at the bottom of the screen.
+     To quit less and go back to the command line press 
+
+     less -N filename
+     less -X filename
+     less +F /var/log/messages
+
+     When launched with +F, less will behave pretty much the same as 
+[tail -f](https://linuxize.com/post/less-command-in-linux/)
+
+[Команды фильтрации в Linux. head, tail, sort, nl, wc, cut, sed, uniq, tac](https://linuxvsem.ru/commands/komandy-filtratsii-v-linux)
+
+     Below are some of the most frequently used commands to navigate through the file content when viewed by less:
+
+     Command	Action
+     Down arrow, Enter, e, or j	Move forward one line.
+     Up arrow,y or k	Move backward one line.
+     Space bar or f	Move Forward one page.
+     b	Move Backward one page.
+     /pattern	Search forward for matching patterns.
+     ?pattern	Search backward for matching patterns.
+     n	Repeat previous search.
+     N	Repeat previous search in reverse direction.
+     g	Go to the first line in the file.
+     Ng	Go to the N-th line in the file.
+     G	Go to the last line in the file.
+     p	Go to the beginning of fthe ile.
+     Np	Go to N percent into file.
+     h	Display help.
+     q	Exit less.
+     Conclusion
+     By now you should have a good understanding of how to use the less command.
+
+     For a complete list of all options and commands type man less in your terminal.
+
+> 13) What are the types of devices and how to determine the type of device? Give
+examples.
+
+[device types](https://linuxjourney.com/lesson/device-types)
+
+     Before we chat about how devices are managed, let's actually take a look at some devices.
+
+     $ ls -l /dev
+
+     brw-rw----   1 root disk      8,   0 Dec 20 20:13 sda
+
+     crw-rw-rw-   1 root root      1,   3 Dec 20 20:13 null
+
+     srw-rw-rw-   1 root root           0 Dec 20 20:13 log
+
+     prw-r--r--   1 root root           0 Dec 20 20:13 fdata
+
+     The columns are as follows from left to right:
+
+     Permissions
+     Owner
+     Group
+     Major Device Number
+     Minor Device Number
+     Timestamp
+     Device Name
+     Remember in the ls command you can see the type of file with the first bit on each line. Device files are denoted as the following:
+
+     c - character
+     b - block
+     p - pipe
+     s - socket
+***Character Device***
+
+     These devices transfer data, but one a character at a time. You'll see a lot of pseudo devices (/dev/null) as character devices, these devices aren't really physically connected to the machine, but they allow the operating system greater functionality.
+
+***Block Device***
+
+     These devices transfer data, but in large fixed-sized blocks. You'll most commonly see devices that utilize data blocks as block devices, such as harddrives, filesystems, etc.
+
+***Pipe Device***
+
+     Named pipes allow two or more processes to communicate with each other, these are similar to character devices, but instead of having output sent to a device, it's sent to another process.
+
+***Socket Device***
+
+     Socket devices facilitate communication between processes, similar to pipe devices but they can communicate with many processes at once.
+
+***Device Characterization***
+
+     Devices are characterized using two numbers, major device number and minor device number. You can see these numbers in the above ls example, they are separated by a comma. For example, let's say a device had the device numbers: 8, 0:
+
+     The major device number represents the device driver that is used, in this case 8, which is often the major number for sd block devices. The minor number tells the kernel which unique device it is in this driver class, in this case 0 is used to represent the first device (a).
+
+[device types](https://www.tecmint.com/find-linux-filesystem-type/)
+
+***1. Using df Command***
+     df command reports file system disk space usage, to include the file system type on a particular disk partition, use the -T flag as below:
+
+     $ df -Th
+     OR
+     $ df -Th | grep "^/dev"
+
+***2. Using fsck Command***
+     fsck is used to check and optionally repair Linux file systems, it can also print the file system type on specified disk partitions.
+
+     The flag -N disables checking of file system for errors, it just shows what would be done (but all we need is the file system type):
+
+     $ fsck -N /dev/sda3
+     $ fsck -N /dev/sdb1
+
+***3. Using lsblk Command***
+     lsblk displays block devices, when used with the -f option, it prints file system type on partitions as well:
+
+     $ lsblk -f
+
+***4. Using mount Command***
+     mount command is used to mount a file system in Linux, it can also be used to mount an ISO image, mount remote Linux filesystem and so much more.
+
+     When run without any arguments, it prints info about disk partitions including the file system type as below:
+
+     $ mount | grep "^/dev"
+
+***5. Using blkid Command***
+     blkid command is used to find or print block device properties, simply specify the disk partition as an argument like so:
+
+     $ blkid /dev/sda3
+
+***6. Using file Command***
+     file command identifies file type, the -s flag enables reading of block or character files and -L enables following of symlinks:
+
+     $ sudo file -sL /dev/sda3
+
+***7. Using fstab File***
+     The /etc/fstab is a static file system info (such as mount point, file system type, mount options etc) file:
+
+     $ cat /etc/fstab
+
+> 14) How to determine the type of file in the system, what types of files are there?
+
+[How to Identify File Types in Linux](https://www.2daygeek.com/find-identify-file-types-in-linux/)
+
+[How to Find Out File Types in Linux](https://www.geeksforgeeks.org/how-to-find-out-file-types-in-linux/)
+
+     man file
+     info file
+     file --help
+
+     Syntax: file [OPTION…] [FILE…]
+
+     file -v
+     file file.txt
+     cat file.txt
+     file -f file.txt
+     file -s /dev/sda
+     file -f GFG.txt
+     file -F '#' GFG.txt
+     file -L stdin
+     file --extension GFG.rar
+
+We can also use ls command to determine a type of file.
+     Syntax:
+
+ls [OPTION]... [FILE]...
+
+***Regular Files***
+
+    Regular files are ordinary files on a system that contains programs, texts, or data. It is used to store information such as text, or images. These files are located in a directory/folder. Regular files contain all readable files such as text files, Docx files, programming files, etc, Binary files, image files such as JPG, PNG, SVG, etc, compressed files such as ZIP, RAR, etc. 
+
+We can find out block file by using the following command:
+
+***Directory Files***
+     
+      ls -l | grep ^d 
+***1. Block Files:***
+
+      ls -l | grep ^b
+***2. Character device files:***
+
+      ls -l | grep ^c
+***3. Pipe Files:***
+
+      ls -l | grep ^p
+***4. Symbol link files:***
+
+      ls -l | grep ^l
+***5. Socket Files:***
+
+      find / -type s 
+      ls -l | grep ^s
+
+> 15) * List the first 5 directory files that were recently accessed in the /etc
+directory.
+
+[Tail command in Linux with examples](https://www.geeksforgeeks.org/tail-command-linux-examples/)
+
+     It is the complementary of head command.The tail command, as the name implies, print the last N number of data of the given input. By default it prints the last 10 lines of the specified files. If more than one file name is provided then data from each file is precedes by its file name.
+
+     Syntax:
+
+     tail [OPTION]... [FILE]...
+
+     ls -ltr | tail -n 5
+
+[Head command in Linux with examples](https://www.geeksforgeeks.org/head-command-linux-examples/)
+
+     It is the complementary of Tail command. The head command, as the name implies, print the top N number of data of the given input. By default, it prints the first 10 lines of the specified files. If more than one file name is provided then data from each file is preceded by its file name. 
+
+     Syntax: 
+     
+
+     head [OPTION]... [FILE]...
