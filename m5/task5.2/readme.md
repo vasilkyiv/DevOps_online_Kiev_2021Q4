@@ -4,507 +4,121 @@
 
 [MODULE 05 NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5) 
 ===========================================================================
- # [TASK_5.1 LinuxEssentials](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
+ # [TASK_5.2 LinuxEssentials](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
 
-# [Part 1](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
+> 1) Analyze the structure of the ***/etc/passwd*** and ***/etc/group*** file, what fields are present in it, what ***users*** exist on the system? Specify several pseudo-users, how to define them?
 
-> 1. Log in to the system as root.
-     
-     [sudoers](https://www.linux.com/training-tutorials/configuring-linux-sudoers-file/)
-     sudo -s
-     info sudo
-     man sudo
-     sudo --help
+[Файл /etc/passwd](https://www.ibm.com/docs/ru/aix/7.1?topic=passwords-using-etcpasswd-file)
 
-> 2. Use the passwd command to change the password. Examine the basic parameters of the command. What system file does it change *?
+     Традиционно в файле /etc/passwd сохраняются данные обо всех зарегистрированных пользователях, имеющих доступ к системе.
 
-[passwd ](https://www.linuxtechi.com/10-passwd-command-examples-in-linux/)
+     Файл /etc/passwd содержит следующие записи, разделенные двоеточиями:
+     Имя пользователя
+     Зашифрованный пароль
+     Цифровой идентификатор пользователя (UID)
+     Цифровой идентификатор группы пользователя (GID)
+     Полное имя пользователя (GECOS)
+     Домашний каталог пользователя
+     Оболочка входа в систему
+     Ниже приведен пример файла /etc/passwd:
 
-     Syntax : 
-     # passwd {options} {user_name}
-     man passwd
-     info passwd
-     passwd --help
+     В отличие от систем UNIX, система AIX хранит зашифрованные пароли не в файле /etc/passwd, а в файле /etc/security/passwd 1, который доступен для чтения только пользователю root. Значение в поле пароля в файле /etc/passwd в AIX просто указывает, задан ли пароль и заблокирована ли учетная запись.
+     Прим.: начало изменения Если оболочка входа в систему не задана, вход в систему успешно выполняется, и применяется оболочка входа в систему Bourne для ssh. При получении доступа через команду su в качестве оболочки входа в систему применяется sh - жесткая ссылка на ksh.конец изменения
+     Файл /etc/passwd принадлежит пользователю root и должен быть доступен для чтения всем пользователям, но для записи - только пользователю root, на что и указывают права доступа -rw-r--r--. Если для ИД пользователя установлен пароль, то в поле пароля будет находиться ! (восклицательный знак). Если у пользователя нет пароля, то в поле пароля будет указана звездочка (*). Зашифрованные пароли хранятся в файле /etc/security/passwd. Приведенный ниже пример содержит четыре последних записи файла /etc/security/passwd, соответствующего приведенному выше файлу /etc/passwd.
 
-     passwd -Sa
+     guest:
+          password = *
+                                             
+     nobody: 
+          password = * 
+                                             
+     lpd: 
+          password = * 
+
+     paul: 
+          password = eacVScDKri4s6 
+          lastupdate = 1026394230 
+          flags = ADMCHG                   
+
+     У пользователя jdoe нет записи в файле /etc/security/passwd, так как для него не задан пароль в файле /etc/passwd.
+
+     Соответствие файла /etc/passwd можно проверить с помощью командыpwdck. Команда pwdck проверяет указанную в файлах пользовательской базы данных информацию о паролях, просматривая определения всех или только указанных пользователей.
+
+     На уровень выше:
+     Пароль
+     1 /etc/security/passwd
+
+[Understanding /etc/group File](https://www.cyberciti.biz/faq/understanding-etcgroup-file/)
+
+     Can you explain me the format of /etc/group user group file under Linux / UNIX-like operating systems?
+
+     The /etc/group is a text file which defines the groups to which users belong under Linux and UNIX operating system. Under Unix / Linux multiple users can be categorized into groups. Unix file system permissions are organized into three classes, user, group, and others. The use of groups allows additional abilities to be delegated in an organized fashion, such as access to disks, printers, and other peripherals. This method, amongst others, also enables the Superuser to delegate some administrative tasks to normal users.
+
+     Understanding the /etc/group File
+     It stores group information or defines the user groups i.e. it defines the groups to which users belong. There is one entry per line, and each line has the following format (all fields are separated by a colon (:)
+
+     Where,
+     group_name: It is the name of group. If you run ls -l command, you will see this name printed in the group field.
+     Password: Generally password is not used, hence it is empty/blank. It can store encrypted password. This is useful to implement privileged groups.
+     Group ID (GID): Each user must be assigned a group ID. You can see this number in your /etc/passwd file.
+     Group List: It is a list of user names of users who are members of the group. The user names, must be separated by commas.
+     More About User Groups
+     Users on Linux and UNIX systems are assigned to one or more groups for the following reasons:
+
+     To share files or other resource with a small number of users
+     Ease of user management
+     Ease of user monitoring
+     Group membership is perfect solution for large Linux (UNIX) installation.
+     Group membership gives you or your user special access to files and directories or devices which are permitted to that group
+
+     User tom is part of both ‘Web developers’ and ‘Sales’ group. So tom can access files belongs to both groups.
+
+***Task: View Current Groups Settings***
+
+     Type any one of the following command:
+     $ less /etc/group
+
+     OR use the more command:
+     $ more /etc/group
+
+     OR use the cat command:
+     $ more /etc/group
+
+***Task: Find Out the Groups a User Is In***
+
+     Type the following groups command:
+     $ groups {username}
+     $ groups
+     $ groups vivek
+
+     Sample outputs:
+
+     vivek : vivek adm dialout cdrom plugdev lpadmin netdev admin sambashare libvirtd
+     Task: Print user / group Identity
+     Use the id command to display information about the given user.
+
+***Display only the group ID, enter:***
+     Use the id command:
+     $ id -g
+     $ id -g user
+     $ id -g vivek
+
+     OR
+     $ id -gn vivek
+
+
+
+****************************
+     cut -d: -f1 /etc/passwd
+     sed 's/:.*//' /etc/passwd
+     awk -F: '{print $1}' /etc/passwd
+
      cat /etc/passwd
-     cat /etc/shadow
-     cat /etc/pam.d/passwd
 
-> 3) Determine the users registered in the system, as well as what commands they execute. What additional information can be gleaned from the command execution?
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.2)
 
-# [users ](https://linuxize.com/post/how-to-list-users-in-linux/)
+[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.2)
 
-     getent passwd | awk -F: '{ print $1}'
-
-     cut -d : -f 1 /etc/group
-
-     grep -E '^UID_MIN|^UID_MAX' /etc/login.defs
-
-> 4) Change personal information about yourself.
-
-# [chenge user info ](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/c6239.htm)
-     
-     chfn --help
-     infog chfn
-     man chfn
-     chfn username
-
-> 5) Become familiar with the Linux help system and the man and info commands. Get help on the previously discussed commands, define and describe any two keys for these commands. Give examples.
-
-# [ info command ](https://www.geeksforgeeks.org/info-command-in-linux-with-examples/)
-
-     info info
-     info man
-     info --help
-     Syntax:
-
-     info [OPTION]... [MENU-ITEM...]
-     Options:
-
-     -a, –all: It use all matching manuals.
-     -k, –apropos=STRING: It look up STRING in all indices of all manuals.
-     -d, –directory=DIR: It add DIR to INFOPATH.
-     -f, –file=MANUAL: It specify Info manual to visit.
-     -h, –help: It display this help and exit.
-     -n, –node=NODENAME: It specify nodes in first visited Info file.
-     -o, –output=FILE: It output selected nodes to FILE.
-     -O, –show-options, –usage: It go to command-line options node.
-     -v, –variable VAR=VALUE: It assign VALUE to Info variable VAR.
-     –version: It display version information and exit.
-     -w, –where, –location: It print physical location of Info file.
-
-# [ man command ](https://www.geeksforgeeks.org/man-command-in-linux-with-examples/)
-
-     man [COMMAND NAME]
-     man man 
-
-# [ help command ](https://www.geeksforgeeks.org/help-command-in-linux-with-examples/)
-     
-     help help
-     // syntax for help command
-
-     $help [-dms] [pattern ...]
-
-> 6) Explore the more and less commands using the help system. View the contents of files .bash* using commands.
-
-# [ less command ](https://www.geeksforgeeks.org/less-command-linux-examples/)
-
-     Syntax : 
-     less filename
-
-     dmesg | less
-
-# [ more command ](https://www.geeksforgeeks.org/more-command-in-linux-with-examples/)
-
-     more -d sample.txt
-     more -f sample.txt
-     more -p sample.txt
-     more -c sample.txt
-     more -s sample.txt
-     more -u sample.txt
-     more +/reset sample.txt
-     more +30 sample.txt
-     cat a.txt | more
-
-> 7) What is skell_dir? What is its structure?
-
-# [ skel is derived from the skeleton because it contains basic structure of home directory ](https://sauravomar01.medium.com/etc-skel-directory-in-linux-dcefc0278f49)
-
-# [ What is the /etc/skel directory in Linux? ](https://www.linuxgurus.in/linux-etc-skel-directory/)
-     
-     - What is the /etc/skel directory in Linux?
-     SAHIL HASANWHAT IS
-     - In this article, you will learn about What is the /etc/skel directory in Linux?
-
-     Note: “skeleton” directory is define in /etc/default/useradd file
-
-     Below you can see the picture of /etc/default/useradd file which defines the skel directory. You can change the default location /etc/skel to any other location.
-
-     cat /etc/default/useradd
-
-     # useradd defaults file
-     GROUP=100
-     HOME=/home
-     INACTIVE=-1
-     EXPIRE=
-     SHELL=/bin/bash
-     SKEL=/etc/skel
-     CREATE_MAIL_SPOOL=yes
-
-     Changing the default user home location 
-
-     vim /etc/default/useradd
-
-     And change the default value from /home to the consider home location. For example, if you want to change it /data/userhome then you just need to type.
-
-     HOME=/data/userhome
-
-     When you create any new users, then the new users’ home will be /data/userhome.
-
-     Default permission of /etc/skel directory
-     The default permission of /etc/skel directory is drwxr-xr-x.
-
-     It is not recommended to change the permission of the skel directory or its contents. Changing the permission may break some of the programs because in the skel directory some profiles need the permission of ‘read’ and trying to permit it to execute will cause some programs/profiles to work unexpectedly.
-
-     Conclusion
-     In this tutorial, we learn about the /etc/skel directory in Linux. I hope, you understand, but if you have any questions, you can ask in the comment section.
-
-     You can read about
-
-     The /etc/skel directory contains files and directories that are automatically copied over to a new user’s home directory when such a user is created by the useradd program. skel is derived from the “skeleton”. Below is shown a picture.
-
-     - skel is derived from the skeleton because it contains basic structure of home directory
-     - The /etc/skel directory contains files and directories that are automatically copied over to a new user’s when it is created from useradd command.
-     - This will ensure that all the users gets same intial settings and environment.
-
-     The location of /etc/skel can be changed by editing the line that begins with SKEL= in the configuration file /etc/default/useradd. By default this line says SKEL=/etc/skel.
-
-     - Default Permission of the /etc/skel directory is drwxr-xr-x.
-     - It is not recommended to change the permission of skel directory or its contents. skel directory there are some profiles that needs the permission of read and trying to give it permission of execute will cause some programs/profiles to stop work or not works as expected.
-     
-     ls -la /etc/skel/
-
-     root@ict-net-adm:/# ls -la /etc/skel/
-     total 20
-     drwxr-xr-x  2 root root 4096 Apr 23  2020 .
-     drwxr-xr-x 95 root root 4096 Dec  7 16:42 ..
-     -rw-r--r--  1 root root  220 Feb 25  2020 .bash_logout
-     -rw-r--r--  1 root root 3771 Feb 25  2020 .bashrc
-     -rw-r--r--  1 root root  807 Feb 25  2020 .profile
-     root@ict-net-adm:/#
-
-> 7) * Describe in plans that you are working on laboratory work 1. Tip: You should read the documentation for the finger command.
-     
-     man finger
-     info finger
-
-> 8) * List the contents of the home directory using the ls command, define its files and directories. Hint: Use the help system to familiarize yourself with the ls command.
-
-     ls --help
-     info ls
-     man ls
-
-     ls -alh --group-directories-first ~
-     ls -lah ~
-     ls -la ~
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
-
-# [Part 2](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
-
-1) Examine the tree command. Master the technique of applying a template, for example, display all files that contain a character c, or files that contain a specific sequence of characters. List subdirectories of the root directory up to and including the second nesting level.
-
-# [ Linux see directory tree structure using tree command ](https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/)
-
-     Syntax – Linux see directory tree structure
-     The syntax is:
-
-     tree
-     tree /path/to/directory
-     tree [options]
-     tree [options] /path/to/directory
-
-     To list contents of /etc in a tree-like format:
-     
-     tree /etc
-
-     The -a option should be passed to see all files. By default tree does not print hidden files (those beginning with a dot ‘.’). In no event does tree print the file system constructs ‘.’ (current directory) and ‘..’ (previous directory).:
-     
-     tree -a
-
-     To list directories only, run:
-     
-     tree -d
-
-     Pass the -C option to see colorized output, using built-in color defaults:
-     
-     tree -C
-
-          ------- Listing options -------
-     -a            All files are listed.
-     -d            List directories only.
-     -l            Follow symbolic links like directories.
-     -f            Print the full path prefix for each file.
-     -x            Stay on current filesystem only.
-     -L level      Descend only level directories deep.
-     -R            Rerun tree when max dir level reached.
-     -P pattern    List only those files that match the pattern given.
-     -I pattern    Do not list files that match the given pattern.
-     --ignore-case Ignore case when pattern matching.
-     --matchdirs   Include directory names in -P pattern matching.
-     --noreport    Turn off file/directory count at end of tree listing.
-     --charset X   Use charset X for terminal/HTML and indentation line output.
-     --filelimit # Do not descend dirs with more than # files in them.
-     --timefmt <f> Print and format time according to the format <f>.
-     -o filename   Output to file instead of stdout.
-     -------- File options ---------
-     -q            Print non-printable characters as '?'.
-     -N            Print non-printable characters as is.
-     -Q            Quote filenames with double quotes.
-     -p            Print the protections for each file.
-     -u            Displays file owner or UID number.
-     -g            Displays file group owner or GID number.
-     -s            Print the size in bytes of each file.
-     -h            Print the size in a more human readable way.
-     --si          Like -h, but use in SI units (powers of 1000).
-     -D            Print the date of last modification or (-c) status change.
-     -F            Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
-     --inodes      Print inode number of each file.
-     --device      Print device ID number to which each file belongs.
-     ------- Sorting options -------
-     -v            Sort files alphanumerically by version.
-     -t            Sort files by last modification time.
-     -c            Sort files by last status change time.
-     -U            Leave files unsorted.
-     -r            Reverse the order of the sort.
-     --dirsfirst   List directories before files (-U disables).
-     --sort X      Select sort: name,version,size,mtime,ctime.
-     ------- Graphics options ------
-     -i            Don't print indentation lines.
-     -A            Print ANSI lines graphic indentation lines.
-     -S            Print with CP437 (console) graphics indentation lines.
-     -n            Turn colorization off always (-C overrides).
-     -C            Turn colorization on always.
-     ------- XML/HTML/JSON options -------
-     -X            Prints out an XML representation of the tree.
-     -J            Prints out an JSON representation of the tree.
-     -H baseHREF   Prints out HTML format with baseHREF as top directory.
-     -T string     Replace the default HTML title and H1 header with string.
-     --nolinks     Turn off hyperlinks in HTML output.
-     ---- Miscellaneous options ----
-     --version     Print version and exit.
-     --help        Print usage and this help message and exit.
-     --            Options processing terminator.
-
-> 2) What command can be used to determine the type of file (for example, text or binary)? Give an example.
-# [ file command in Linux with examples ](https://www.geeksforgeeks.org/file-command-in-linux-with-examples/)
-
-     Syntax:
-
-     file [option] [filename]
-     
-     file email.py
-     file name.jpeg
-     file Invoice.pdf
-     file exam.ods
-     file videosong.mp4
-
-> 3) Master the skills of navigating the file system using relative and absolute paths. How can you go back to your home directory from anywhere in the filesystem?
-# [ Navigating your filesystem in the Linux terminal ](https://www.redhat.com/sysadmin/navigating-filesystem-linux-terminal)
-
-     You can also always return to your home directory instantly using this shortcut:
-
-     $ cd ~
-     $ pwd
-     /home/seth
-
-> 4) Become familiar with the various options for the ls command. Give examples of listing directories using different keys. Explain the information displayed on the terminal using the -l and -a switches.
-# [ 15 Basic ‘ls’ Command Examples in Linux ](https://www.tecmint.com/15-basic-ls-command-examples-in-linux/)
-
-     info ls
-     man ls
-     ls --help
-
-     1. List Files and Directories in Linux
-     Running ls command with no option list files and directories in a bare format where we won’t be able to view details like file types, size, modified date and time, permission and links, etc.
-     2. Long Listing of Files in Linux
-     Here, ls -l (-l is a character, not one) shows file or directory, size, modified date and time, file or folder name and owner of the file, and its permission.
-     3. View Hidden Files in Linux
-     List all files including hidden files starting with ‘.‘.
-     4. List Files with Human Readable Format
-     With a combination of -lh option, shows sizes in a human-readable format.
-     5. List Files and Directories with ‘/’ Character at the End
-     Using the -F option with the ls command will add the '/' character at the end of each directory.
-     6. List Files in Reverse Order in Linux
-     The following command with the ls -r option display files and directories in reverse order.
-     7. Recursively list Sub-Directories in Linux
-     ls -R option will list very long listing directory trees. See an example of the output of the command.
-     8. List Files and Directories in Reverse Order in Linux
-     A combination of -ltr will show the latest modification file or directory date as last.
-     9. Sort Files by File Size in Linux
-     With a combination of -lS displays file size in order, will display big in size first.
-     10. Display Inode number of File or Directory
-     We can see some numbers printed before the file/directory name. With -i options list file/directory with an inode number.
-     11. Shows Version of ls Command
-     Check the version of the ls command.
-     12. Show ls Command Help Page
-     The help page of ls command with their option.
-     13. List Directory Information in Linux
-     With ls -l command list files under directory /tmp. Wherein with -ld parameters displays information of /tmp directory.
-     14. Display UID and GID of Files
-     To display UID and GID of files and directories. use option -n with ls command.
-     15. ls command and its Aliases
-     We have made an alias for ls command, when we execute ls command it’ll take the -l option by default and display a long listing as mentioned earlier.
-
-> 5) Perform the following sequence of operations: 
-- create a subdirectory in the home directory; 
-- in this subdirectory create a file containing information about directories located in the root directory (using I/O redirection operations);
-- view the created file;
-- copy the created file to your home directory using relative and absolute addressing.
-- delete the previously created subdirectory with the file requesting removal;
-- delete the file copied to the home directory.
-
-          mkdir ~/task5.1_part2_p5
-         tree -ld /etc > ~/task5.1_part2_p5/info_ebaut_directory
-        less ~/task5.1_part2_p5/info_ebaut_directory
-         cp ~/task5.1_part2_p5/info_ebaut_directory home/ovo/
-          cp /root/task5.1_part2_p5/info_ebaut_directory /home/ovo/
-         rm -r ~/task5.1_part2_p5/
-          rm /home/ovo/info_ebaut_directory
-
-> 6) Perform the following sequence of operations:
-# [ What is the difference between a symbolic link and a hard link?](https://stackoverflow.com/questions/185899/what-is-the-difference-between-a-symbolic-link-and-a-hard-link)
-
-- create a subdirectory test in the home directory;
-- copy the .bash_history file to this directory while changing its name to labwork2;
-- create a hard and soft link to the labwork2 file in the test subdirectory;
-- how to define soft and hard link, what do these
-concepts;
-- change the data by opening a symbolic link. What changes will happen and why
-- rename the hard link file to hard_lnk_labwork2;
-- rename the soft link file to symb_lnk_labwork2 file;
-- then delete the labwork2. What changes have occurred and why?
-     
-          mkdir ~/test
-          cp ~/.bash_history ~/test/labwork2
-          ln -P labwork2 PhisicalLink
-          ln -s labwork2 SymboliclLink
-
-# [Hard links and soft links in Linux explained](https://www.redhat.com/sysadmin/linking-linux-explained)
-
-Files that are ***hard-linked*** together share the same ***inode*** number.
-
-     [tcarrigan@server demo]$ ls -li link_test /tmp/link_new 
-     2730074 -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 link_test
-     2730074 -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 /tmp/link_new
-
- >    -  A hard link always points a filename to data on a storage device.
- >    -  A soft link always points a filename to another filename, which then points to information on a storage device.
-
-     mv PhisicalLink hard_lnk_labwork2
-
-> 7) Using the locate utility, find all files that contain the squid and traceroute
-sequence.
-# [locate command in Linux with Examples](https://www.geeksforgeeks.org/locate-command-in-linux-with-examples/)
-
-     man locate
-     info locate
-     locate --help
-
-     Syntax:
-
-     locate [OPTION]... PATTERN...
-     Exit Status: This command will exit with status 0 if any specified match found. If no match founds or a fatal error encountered, then it will exit with status 1.
-
-     Options:
-
-     -b, –basename : Match only the base name against the specified patterns, which is the opposite of –wholename.
-     -c, –count : Instead of writing file names on standard output, write the number of matching entries only.
-     -d, –database DBPATH : Replace the default database with DBPATH. DBPATH is a : (colon) separated list of database file names. If more than one –database option is specified, the resulting path is a concatenation of the separate paths. An empty database file name is replaced by the default database. A database file name – refers to the standard input. Note that a database can be read from the standard input only once.
-     -e, –existing : Print only entries that refer to files existing at the time locate is run.
-     -L, –follow : When checking whether files exist (if the –existing option is specified), follow trailing symbolic links. This causes bro ken symbolic links to be omitted from the output. This option is the default behavior. The opposite can be specified using –nofollow.
-     -h, –help : Write a summary of the available options to standard output and exit successfully.
-     -i, –ignore-case : Ignore case distinctions when matching patterns.
-     -l, –limit, -n LIMIT : Exit successfully after finding LIMIT entries. If the –count option is specified, the resulting count is also limited to LIMIT.
-     -m, –mmap : Ignored, but included for compatibility with BSD and GNU locate.
-     -P, –nofollow, -H : When checking whether files exist (if the –existing option is specified), do not follow trailing symbolic links. This causes broken symbolic links to be reported like other files.
-     This option is the opposite of –follow.
-
-     -0, –null : Separate the entries on output using the ASCII NUL character instead of writing each entry on a separate line. This option is designed for interoperability with the –null option of GNU xargs.
-     -S, –statistics : Write statistics about each read database to standard output instead of searching for files and exit successfully.
-     -q, –quiet : Write no messages about errors encountered while reading and processing databases.
-     -r, –regexp REGEXP : Search for a basic regexp REGEXP. No PATTERNs are allowed if this option is used, but this option can be specified multiple times.
-     –regex : Interpret all PATTERNs as extended regexps.
-     -s, –stdio : Ignored, for compatibility with BSD and GNU locate.
-     -V, –version : Write information about the version and license of locate on standard output and exit successfully.
-     -w, –wholename : Match only the whole path name against the specified patterns. This option is the default behavior. The opposite can be specified using –basename.
-
-     apt install mlocate-y
-     updatedb
-
-     locate -A squid
-     locate -A traceroute
-
-     locate -i -0 *sample.txt*
-     locate -i *SAMPLE.txt*
-     locate -c [.txt]*
-     locate "*.html" -n 20
-     locate sample.txt 
-
-[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
-
-> 8) Determine which partitions are mounted in the system, as well as the types of
-these partitions.
-
-[Which partition is mounted to where? [duplicate])](https://unix.stackexchange.com/questions/192273/which-partition-is-mounted-to-where/192279)
-
-[lsblk Command to list block device on Linux)](https://www.cyberciti.biz/faq/linux-list-disk-partitions-command/)
-
-[19. Partitions, File Systems, Formatting, Mounting](https://rute.gerdesas.com/node22.html)
-     
-     man fdisk
-     man lsblk
-     man sfdisk
-     man parted
-
-     lsblk
-     lsblk /dev/DEVICE
-     lsblk /dev/sda
-     lsblk -l
-     lsblk -d | grep disk
-
-     lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT
-
-     hwinfo | more
-     hwinfo --block | more
-     hwinfo --block --short
-     inxi -P
-     inxi -p | more
-
-     lsblk -f -m | grep ext4
-     lsblk -f -m
-     blkid
-
-> 9) Count the number of lines containing a given sequence of characters in a given
-file.
-[How to Count lines in a file in UNIX/Linux](https://www.thegeekdiary.com/how-to-count-lines-in-a-file-in-unix-linux/)
-
-     Using “wc -l”
-
-     wc -l [filename]
-     wc -l file01.txt
-     wc -l < file01.txt
-     cat file01.txt | wc -l
-
-     Using awk
-     awk 'END{print NR}' [filename]
-     awk 'END{print NR}' file01.txt
-
-     Using sed
-     sed -n '$=' [filename]
-     sed -n '$=' file01.txt
-
-     Using grep
-     grep -c ".*" [filename]
-     grep -c ".*" file01.txt
-     grep -Hc ".*" [filename]
-     grep -c ^ file01.txt
-     grep -Hc ".*" file01.txt
-
-     Some more commands
-     nl [filename]
-     nl file01.txt
-     nl file01.txt | tail -1 | awk '{print $1}'
-     cat -n file01.txt
-     cat -n file01.txt | tail -1 | awk '{print $1}'
-     perl -lne 'END { print $. }' file01.txt
-
-> 10) Using the ***find*** command, find all files in the ***/etc*** directory containing the
-***host*** character sequence.
-
-[find Command](https://www.ibm.com/docs/en/aix/7.1?topic=f-find-command)
-
-[find command in Linux with examples](https://www.geeksforgeeks.org/find-command-in-linux-with-examples/)
-     
+2) What are the uid ranges? What is UID? How to define it?
 
 
