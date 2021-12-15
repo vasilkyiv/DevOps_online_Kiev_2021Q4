@@ -669,5 +669,40 @@ You can check the user groups by typing
 
 ***grep sweta /etc/shadow***
 
-[Как правильно использовать NOPASSWD?](https://qna.habr.com/q/284730)
+[Файл Sudoers, включите NOPASSWD для пользователя, все команды](https://qastack.ru/ubuntu/334318/sudoers-file-enable-nopasswd-for-user-all-commands)
+
+man sudoers
+
+***nicholsonjf    ALL=NOPASSWD: ALL***
+
+     Добавленная вами строка была переопределена. От man sudoers:
+
+     Когда несколько записей совпадают для пользователя, они применяются по порядку. При наличии нескольких совпадений используется последнее совпадение (которое не обязательно является наиболее конкретным совпадением).
+
+     В вашем случае nicholsonjfбыл членом группы, sudoпоэтому для него эта строка применяется:
+
+     %sudo   ALL=(ALL:ALL) ALL
+     Если вы хотите переопределить записи, /etc/sudoers просто поместите новые записи после них.
+
+     Новая запись должна выглядеть
+
+     myuser ALL=(ALL) NOPASSWD: ALL для одного пользователя, или
+
+     %sudo ALL=(ALL) NOPASSWD: ALL для группы.
+
+> 11) Display the extended format of information about the directory, tell about the information columns displayed on the terminal.
+
+[15 Basic ‘ls’ Command Examples in Linux)](https://www.tecmint.com/15-basic-ls-command-examples-in-linux/)
+
+[Ls Command in Linux (List Files and Directories)](https://linuxize.com/post/how-to-list-files-in-linux-using-the-ls-command/)
+
+
+     ls -list
+     ls -l
+
+> 12) What access rights exist and for whom (i. e., describe the main roles)?
+Briefly describe the acronym for access rights.
+
+
+
 
