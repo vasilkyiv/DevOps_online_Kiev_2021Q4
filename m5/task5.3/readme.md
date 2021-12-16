@@ -236,6 +236,17 @@ To display all user-specific running processes information, use the ***-u*** opt
 ***top -o ENVIRON***
 
 ***htop --sort-key=PERCENT_MEM***
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+
+[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+
+[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+
+[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+
+[![*Report in screenshots*](shreenshot/5.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+
+[![*Report in screenshots*](shreenshot/6.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
 
      ### Use the ***top*** command in Linux/Unix:
      
@@ -255,4 +266,13 @@ To display all user-specific running processes information, use the ***-u*** opt
 
 > 14. Concept of priority, what commands are used to set priority?
      
+[Linux commands: How to manipulate process priority ](https://www.redhat.com/sysadmin/manipulate-process-priority)
+
+      nice(1), renice(1), fork(2), getpriority(2), getrlimit(2),
+       setpriority(2), capabilities(7), sched(7)
+
+[How to Set Linux Process Priority Using nice and renice Commands ](https://www.tecmint.com/set-linux-process-priority-using-nice-and-renice-commands/)
+
+***ps axo pid,comm,nice,cls --sort=-nice***
+
 
