@@ -314,8 +314,7 @@
      $ getent group userName
      $ getent group vivek
 
-> 5) What are the commands for adding a user to the system? What are the basic
-parameters required to create a user?
+> 5) What are the commands for adding a user to the system? What are the basic parameters required to create a user?
 
 [How to Create Users in Linux (useradd Command)](https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/)
 
@@ -700,8 +699,7 @@ man sudoers
      ls -list
      ls -l
 
-> 12) What access rights exist and for whom (i. e., describe the main roles)?
-Briefly describe the acronym for access rights.
+> 12) What access rights exist and for whom (i. e., describe the main roles)? Briefly describe the acronym for access rights.
 
 [Ls Command in Linux (List Files and Directories)](linux.com/training-tutorials/understanding-linux-file-permissions/)
 
@@ -820,10 +818,308 @@ Briefly describe the acronym for access rights.
      system and daemon configuration files– It is very important to restrict rights to system and daemon configuration files to restrict users from editing the contents, it may not be advisable to restrict read permissions, but restricting write permissions is a must. In these cases it may be best to modify the rights to 644.
      firewall scripts – It may not always be necessary to block all users from reading the firewall file, but it is advisable to restrict the users from writing to the file. In this case the firewall script is run by the root user automatically on boot, so all other users need no rights, so you can assign the 700 permissions.
 
-> 13) What is the sequence of defining the relationship between the file and the
-user?
+> 13) What is the sequence of defining the relationship between the file and the user?
 
-[HOW TO USE UNIX AND LINUX FILE PERMISSIONS)](https://its.unc.edu/research-computing/techdocs/how-to-use-unix-and-linux-file-permissions/)
+[HOW TO USE UNIX AND LINUX FILE PERMISSIONS](https://its.unc.edu/research-computing/techdocs/how-to-use-unix-and-linux-file-permissions/)
+     
+     Permissions
+     Every file and directory under UNIX or Linux has a set of permissions associated with it that is shown as a three digit number (such as 755). These permissions are categorized into three groups who have or do not have the permissions:
+
+     the file owner
+     the owner’s group
+     everyone else who has access to the server (referred to as “other”)
+
+> 14) What commands are used to change the owner of a file (directory), as well as the mode of access to the file? Give examples, demonstrate on the terminal.
+
+[chown Command](https://www.ibm.com/docs/en/aix/7.2?topic=c-chown-command)
+
+     Syntax
+     chown [  -f ] [ -h ] [  -R ] Owner [ :Group ] { File ... | Directory ... }
+     chown -R  [  -f ] [ -H | -L | -P ] Owner [ :Group ] { File ... | Directory ... }
+
+### Files
+        Item                 Description
+     /usr/bin/chown	    The chown command
+     /etc/group	    File that contains group IDs
+     /etc/passwd	    File that contains user IDs
+
+     To change the owner of the file program.c:
+***chown jim program.c***
+
+     The user access permissions for program.c now apply to jim. As the owner, jim can use the chmod command to permit or deny other users access to program.c.
+     To change the owner and group of all files in the directory /tmp/src to owner john and group build:
+***chown -R john:build /tmp/src***
+
+> 15) What is an example of octal representation of access rights? Describe the umask command.
+
+[File Permissions](https://doane-ccla.gitbook.io/docs/learning-linux/file-permissions)
+
+     The chmod command is used to control the access permissions for directories. We can use the octal notation to set permissions. To describe the octal notation, we can add permission values to obtain new, combined (octal) values.
+### Permission values:
+     1 – able to execute (x)
+     2 – able to write (w)
+     4 – able to read (r)
+### The octal number is the sum of the permission values, for example:
+     3 (1+2) – able to execute and write
+     6 (2+4) – able to write and read
+     The meaning of the r, w, and x attributes is different:
+     r - Allows the contents of the directory to be listed if the x attribute is also set.
+     w - Allows files within the directory to be created, deleted, or renamed if the x attribute is also set.
+     x - Allows a directory to be entered (i.e. cd dir).
+     There are three digits in a chmod permission. The first digit represents the permissions of the user, the second represents the group, and the third represents global permissions. So if a file has permissions 754, the user can read, write, and execute; the group can read and execute, while all other users can only read.
+     Permissions my be interpreted and set numerically (640) or symbolically (wr-).
+     Permission 600 is a common setting for data files that the owner wants to keep private. The owner may read and write a file. All others have no rights.
+     600 is equivalent to rw-------.
+     If you have another setting configured for your private data file, please run the chmod command to set it to 600.
+***sudo chmod filename 600***
+
+> 16) Give definitions of sticky bits and mechanism of identifier substitution. Give an example of files and directories with these attributes.
+
+[SetUID, SetGID, and Sticky Bits in Linux File Permissions](https://www.geeksforgeeks.org/setuid-setgid-and-sticky-bits-in-linux-file-permissions/)
+
+### 1. The setuid bit
+
+     This bit is present for files which have executable permissions. The setuid bit simply indicates that when running the executable, it will set its permissions to that of the user who created it (owner), instead of setting it to the user who launched it. Similarly, there is a setgid bit which does the same for the ***gid.***
+
+     To locate the setuid, look for an ‘s’ instead of an ‘x’ in the executable bit of the file permissions.
+
+     An example of an executable with setuid permission is passwd, as can be seen in the following output.
+
+***ls -l /etc/passwd***
+     This returns the following output:
+
+     -rwsr-xr-x root root 2447 Aug 29  2018 /etc/passwd
+
+     As we can observe, the ‘x’ is replaced by an ‘s’ in the user section of the file permissions.
+
+     To set the setuid bit, use the following command.
+
+***chmod u+s*** 
+
+     To remove the setuid bit, use the following command.
+
+***chmod u-s***
+
+### 2. The setgid bit
+
+     The setgid affects both files as well as directories. When used on a file, it executes with the privileges of the group of the user who owns it instead of executing with those of the group of the user who executed it.
+     When the bit is set for a directory, the set of files in that directory will have the same group as the group of the parent directory, and not that of the user who created those files. This is used for file sharing since they can be now modified by all the users who are part of the group of the parent directory.
+
+     To locate the setgid bit, look for an ‘s’ in the group section of the file permissions, as shown in the example below.
+
+     -rwxrwsr-x root root 1427 Aug 2 2019 sample_file
+     To set the setgid bit, use the following command.
+
+***chmod g+s*** 
+
+     To remove the setgid bit, use the following command.
+
+***chmod g-s*** 
+
+### Security Risks
+
+     The setuid bit is indeed quite useful in various applications, however, the executable programs supporting this feature should be carefully designed so as to not compromise on any security risks that follow, such as buffer overruns and path injection. If a vulnerable program runs with root privileges, the attacker could gain root access to the system through it. To dodge such possibilities, some operating systems ignore the setuid bit for executable shell scripts.
+
+### 3. The sticky bit
+
+     The sticky bit was initially introduced to ‘stick’ an executable program’s text segment in the swap space even after the program has completed execution, to speed up the subsequent runs of the same program. However, these days the sticky bit means something entirely different.
+
+     When a directory has the sticky bit set, its files can be deleted or renamed only by the file owner, directory owner and the root user. The command below shows how the sticky bit can be set.
+
+***chmod +t***
+
+     Simply look for a ‘t’ character in the file permissions to locate the sticky bit. The snippet below shows how we can set the sticky bit for some directory “Gatos”, and how it prevents the new user from deleting a file in the directory.
+
+     To remove the sticky bit, simply use the following command.
+
+***chmod -t***
+
+     Since deleting a file is controlled by the write permission of the file, practical uses of the sticky bit involve world-writable directories such as ‘/tmp’ so that the delete permissions are reserved only for the owners of the file.
+
+> 17) What file attributes should be present in the command script?
+
+[File attributes comparisons](https://bash.cyberciti.biz/guide/File_attributes_comparisons)
+
+     -a file
+     True if file exists.
+
+     Example
+     [ -a /etc/resolv.conf ] && echo "File found" || echo "Not found"
+     -b file
+     True if file exists and is a block special file.
+
+     Example
+     [ -b /dev/zero ] && echo "block special file found" || echo "block special file not found"
+     OR
+
+     [ -b /dev/sda ] && echo "block special file found" || echo "block special file not found"
+     -c file
+     True if file exists and is a character special file.
+
+     Example
+     [ -c /dev/tty0  ] && echo "Character special file found." || echo "Character special file not found."
+     -d dir
+     True if file exists and is a directory.
+
+     Example
+     #!/bin/bash
+     DEST="/backup"
+     SRC="/home"
+
+     # Make sure backup dir exits
+     [ ! -d "$DEST" ] && mkdir -p "$DEST"
+
+     # If source directory does not exits, die...
+     [ ! -d "$SRC" ] && { echo "$SRC directory not found. Cannot make backup to $DEST"; exit 1; }
+
+     # Okay, dump backup using tar
+     echo "Backup directory $DEST..."
+     echo "Source directory $SRC..."
+     /bin/tar zcf "$DEST/backup.tar.gz" "$SRC" 2>/dev/null
+
+
+     # Find out if our backup job failed or not and notify on screen
+     [ $? -eq 0 ] && echo "Backup done!" || echo "Backup failed"
+     -e file
+     True if file exists.
+
+     Example
+     [ -e /tmp/test.txt ] && echo "File found" || echo "File not found"
+     -f file
+     True if file exists and is a regular file.
+
+     Example
+     [ ! -f /path/to/file ] && echo "File not found!"
+     A sample shell script that compare various file attributes and create webalizer (application that generates web pages of analysis, from access and usage log) stats configuration file to given Internet domain name.
+
+     #!/bin/bash
+     # Purpose: A Shell Script To Create Webalizer Stats Configration File
+     # Written by: Vivek Gite
+     # ---------------------------------------------------------------------
+     # Set vars
+
+     # Apache vroot for each domain
+     HTTPDROOT="/home/httpd"
+
+     # Path to GeoIP DB
+     GEOIPDBPATH="/usr/local/share/GeoIP/GeoIP.dat"
+
+     # Get the Internet domain such as cyberciti.biz 
+     echo "*** A Shell Script To Create Webalizer Stats Configration File ***"
+     read -p "Enter a domain name : " DOMAIN
+
+     # Make sure we got the Input else die with an error on screen
+     [ -z $DOMAIN ] && { echo "Please enter a domain name. Try again!"; exit 1; }
+
+     # Alright, set some variable based upon $DOMAIN 
+     OUT="$HTTPDROOT/$DOMAIN/stats/webalizer.conf"
+     CONFROOT="$HTTPDROOT/$DOMAIN/stats"
+     LOGFILE="$HTTPDROOT/$DOMAIN/logs/access.log"
+
+     # Die if configuration file exits...
+     [ -f $OUT ] && { echo "Webalizer configuration file '$OUT' exits for domain $DOMAIN."; exit 2; }
+
+     # Make sure configuration directory exists
+     [ ! -d $CONFROOT ] && mkdir -p $CONFROOT 
+
+     # Write a log file 
+
+     >$OUT
+     echo "LogFile $LOGFILE"  >> $OUT
+     echo "LogType clf"  >> $OUT
+     echo "OutputDir     $CONFROOT/out"  >> $OUT
+     echo "HistoryName     $CONFROOT/webalizer.hist"  >> $OUT
+     echo "Incremental     yes"  >> $OUT
+     echo "IncrementalName $CONFROOT/webalizer.current"  >> $OUT
+     echo "HostName       $DOMAIN"  >> $OUT
+     echo "Quiet           yes"  >> $OUT
+     echo "FoldSeqErr      yes"  >> $OUT
+     echo "AllSearchStr    yes"  >> $OUT
+     echo "HideSite        $DOMAIN"  >> $OUT
+     echo "HideSite        localhost"  >> $OUT
+     echo "HideReferrer    $DOMAIN"  >> $OUT
+     echo "HideURL         *.gif"  >> $OUT
+     echo "HideURL         *.GIF"  >> $OUT
+     echo "HideURL         *.jpg"  >> $OUT
+     echo "HideURL         *.JPG"  >> $OUT
+     echo "HideURL         *.png"  >> $OUT
+     echo "HideURL         *.PNG"  >> $OUT
+     echo "HideURL         *.ra"  >> $OUT
+     echo "GroupReferrer   yahoo.com/      Yahoo!"  >> $OUT
+     echo "GroupReferrer   excite.com/     Excite"  >> $OUT
+     echo "GroupReferrer   infoseek.com/   InfoSeek"  >> $OUT
+     echo "GroupReferrer   webcrawler.com/ WebCrawler"  >> $OUT
+     echo "SearchEngine    .yahoo.         p="  >> $OUT
+     echo "SearchEngine    altavista.com   q="  >> $OUT
+     echo "SearchEngine    .google.        q="  >> $OUT
+     echo "SearchEngine    eureka.com      q="  >> $OUT
+     echo "SearchEngine    lycos.com       query="  >> $OUT
+     echo "SearchEngine    hotbot.com      MT="  >> $OUT
+     echo "SearchEngine    msn.com         MT="  >> $OUT
+     echo "SearchEngine    infoseek.com    qt="  >> $OUT
+     echo "SearchEngine    webcrawler      searchText="  >> $OUT
+     echo "SearchEngine    excite          search="  >> $OUT
+     echo "SearchEngine    netscape.com    search="  >> $OUT
+     echo "SearchEngine    mamma.com       query="  >> $OUT
+     echo "SearchEngine    alltheweb.com   query="  >> $OUT
+     echo "SearchEngine    northernlight.com  qr="  >> $OUT
+     echo "CountryFlags yes"  >> $OUT
+     echo "GeoIP yes"  >> $OUT
+     echo "GeoIPDatabase $GEOIPDBPATH"  >> $OUT
+     echo "GraphMonths 72"  >> $OUT
+     echo "IndexMonths 120"  >> $OUT
+     echo "GraphMonths 72"  >> $OUT
+     echo "TopReferrers 20"  >> $OUT
+     echo "TopSites 20"  >> $OUT
+     echo "TopURLs 50"  >> $OUT
+     echo "TopKURLs 50"  >> $OUT
+
+     echo "Weblizer config wrote to $OUT"
+     -g file
+     True if file exists and is set-group-id.
+
+     -h file
+     True if file exists and is a symbolic link.
+
+     -k file
+     True if file exists and its ‘‘sticky’’ bit is set.
+
+     -p file
+     True if file exists and is a named pipe (FIFO).
+
+     -r file
+     True if file exists and is readable.
+
+     -s file
+     True if file exists and has a size greater than zero.
+
+     -t fd
+     True if file descriptor fd is open and refers to a terminal.
+
+     -u file
+     True if file exists and its set-user-id bit is set.
+
+     -w file
+     True if file exists and is writable.
+
+     -x file
+     True if file exists and is executable.
+
+     -O file
+     True if file exists and is owned by the effective user id.
+
+     -G file
+     True if file exists and is owned by the effective group id.
+
+     -L file
+     True if file exists and is a symbolic link.
+
+     -S file
+     True if file exists and is a socket.
+
+     -N file
+
+
 
 
 
