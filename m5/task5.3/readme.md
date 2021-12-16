@@ -8,503 +8,251 @@
 
 # [Part 1](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
 
-> 1. Log in to the system as root.
+> 1. How many states could has a process in Linux?
+
+[Understanding Linux Process States](https://access.redhat.com/sites/default/files/attachments/processstates_20120831.pdf)
+
+[Process States](https://linuxjourney.com/lesson/process-states)
+
+[Linux Process States](https://www.baeldung.com/linux/process-states)
+
+     R: running or runnable, it is just waiting for the CPU to process it
+     S: Interruptible sleep, waiting for an event to complete, such as input from the erminal
+     D: Uninterruptible sleep, processes that cannot be killed or interrupted with a signal, usually to make them go away you have to reboot or fix the issue
+     Z: Zombie, we discussed in a previous lesson that zombies are terminated processes that are waiting to have their statuses collected
+     T: Stopped, a process that has been suspended/stopped
+
+> 2. Examine the pstree command. Make output (highlight) the chain (ancestors) of the current
+process.
+
+[pstree Command in Linux with Examples](https://www.geeksforgeeks.org/pstree-command-in-linux-with-examples/)
+
+     pstree [options] [pid or username]
+
+     pstree
+     pstree -a
+     pstree -p
+     pstree -c
+     pstree -n
+     pstree -u
+     pstree -h
+     pstree -g
+     pstree khushi
+     pstree -V
+
+> 3. What is a proc file system?
+
+[proc file system in Linux](https://www.geeksforgeeks.org/proc-file-system-linux/)
+
+     Proc file system (procfs) is virtual file system created on fly when system boots and is dissolved at time of system shut down.
+
+     It contains useful information about the processes that are currently running, it is regarded as control and information center for kernel.
+
+     The proc file system also provides communication medium between kernel space and user space.
+
+     ls -l /proc | grep '^d'
+     ps -aux
+     ls -ltr /proc/7494
+
+     /proc/PID/cmdline
+     /proc/PID/cwd
+     /proc/PID/exe
+     /proc/PID/maps
+     /proc/PID/root
+     /proc/PID/statm
+     /proc/crypto
+     /proc/filesystems
+     /proc/meminfo
+     /proc/tty
+
+     less /proc/crypto
+
+> 4. Print information about the processor (its type, supported technologies, etc.).
+
+[9 Commands to Check CPU Information on Linux](https://www.binarytides.com/linux-cpu-information/)
+
+     less /proc/cpuinfo
+     lscpu
+     hardinfo | less
+     lshw -class processor
+     nproc
+     dmidecode
+     sudo apt-get install cpuid
+     sudo apt-get install inxi
+     hwinfo --short --cpu
+
+> 5. Use the ps command to get information about the process. The information should be as follows: the owner of the process, the arguments with which the process was  launched for execution, the group owner of this process, etc.
+
+     ps aufx
+
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+6. How to define kernel processes and user processes?
+
+[Как в linux определить процессы ядра и пользовательские процессы](https://ru.stackoverflow.com/questions/528566/%D0%9A%D0%B0%D0%BA-%D0%B2-linux-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B-%D1%8F%D0%B4%D1%80%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B)
+
+
+В современном linux, в отличие от многих других Unix есть так называемые "***процессы ядра***". По суди это просто части самого ядра, функции общего кода ядра, работающие в том же адресном пространстве и с теми же привилегиями, что и остальной код ядра. Единственное их отличие от других частей ядра, для них создаются отдельные записи в таблице процессов. Процессами они сделаны для того, что бы их выполнение происходило независимо от остальных частей ядра, с более низким приоритетом. Их выполнение происходит под контролем планировщика, как и все остальные процессы в системе.
+
+Процессы ядра linux запускаются самим ядром, при этом родительским процессом якобы их породившим, назначается процесс ***kthread***, с ***PID=2***. Таким образом процессами ядра надо считать сам процесс с PID=2, а так же процессы у которых PPID (т.е. pid родителя) равен ***2***.
+
+***sudo ps --ppid=2 --pid=2***  
+
+     Пользовательские процессы - все остальные:
+
+***sudo ps -N --ppid=2 --pid=2***
+
+     Так же по умолчанию pstree без параметров показывает только дерево процессов порожденных init, т.е. пользовательских процессов. Процессы ядра покажет 
+sudo ***pstree 2.***
+
+     @jumpjet67 init - обычный пользовательский процесс (за исключением того, что это единственный процесс запускаемый самим ядром), он стартует все пользовательские процессы в системе, по ps --ppid=1 вы увидите все запущенные при инициализации системы демоны и обработчики терминалов, они в свою очередь запускают другие процессы. Во многих unix системах такой штуки как "процесс ядра" в принципе не было. В современном linux они работают независимо от init и запускаются kthread'ом. Нашел еще одно отличие: у процессов ядра /proc/pid/exe никуда не указывает, так как нет выполнимого файла на диске – 
+     Mike
      
-     [sudoers](https://www.linux.com/training-tutorials/configuring-linux-sudoers-file/)
-     sudo -s
-     info sudo
-     man sudo
-     sudo --help
-
-> 2. Use the passwd command to change the password. Examine the basic parameters of the command. What system file does it change *?
-
-[passwd ](https://www.linuxtechi.com/10-passwd-command-examples-in-linux/)
-
-     Syntax : 
-     # passwd {options} {user_name}
-     man passwd
-     info passwd
-     passwd --help
-
-     passwd -Sa
-     cat /etc/passwd
-     cat /etc/shadow
-     cat /etc/pam.d/passwd
-
-> 3) Determine the users registered in the system, as well as what commands they execute. What additional information can be gleaned from the command execution?
-
-# [users ](https://linuxize.com/post/how-to-list-users-in-linux/)
-
-     getent passwd | awk -F: '{ print $1}'
-
-     cut -d : -f 1 /etc/group
-
-     grep -E '^UID_MIN|^UID_MAX' /etc/login.defs
-
-> 4) Change personal information about yourself.
-
-# [chenge user info ](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/c6239.htm)
+     Ок. Вы пишите "Все процессы ядра linux запускаются одним родительским процессом kthread", а в комменте "init - стартует все пользовательские процессы в системе". А как они связаны друг с другом? init запускает kthread или наоборот? Просто получилось много умных слов, мне как далёкому от этих дел пользователю мало что из них стало ясно. – 
+     aryndin
      
-     chfn --help
-     infog chfn
-     man chfn
-     chfn username
-
-> 5) Become familiar with the Linux help system and the man and info commands. Get help on the previously discussed commands, define and describe any two keys for these commands. Give examples.
-
-# [ info command ](https://www.geeksforgeeks.org/info-command-in-linux-with-examples/)
-
-     info info
-     info man
-     info --help
-     Syntax:
-
-     info [OPTION]... [MENU-ITEM...]
-     Options:
-
-     -a, –all: It use all matching manuals.
-     -k, –apropos=STRING: It look up STRING in all indices of all manuals.
-     -d, –directory=DIR: It add DIR to INFOPATH.
-     -f, –file=MANUAL: It specify Info manual to visit.
-     -h, –help: It display this help and exit.
-     -n, –node=NODENAME: It specify nodes in first visited Info file.
-     -o, –output=FILE: It output selected nodes to FILE.
-     -O, –show-options, –usage: It go to command-line options node.
-     -v, –variable VAR=VALUE: It assign VALUE to Info variable VAR.
-     –version: It display version information and exit.
-     -w, –where, –location: It print physical location of Info file.
-
-# [ man command ](https://www.geeksforgeeks.org/man-command-in-linux-with-examples/)
-
-     man [COMMAND NAME]
-     man man 
-
-# [ help command ](https://www.geeksforgeeks.org/help-command-in-linux-with-examples/)
      
-     help help
-     // syntax for help command
+     @jumpjet67 Подумав, я дописал в ответе про pstree. По нему видно, что у linux два независимых дерева процессов, пользовательские - порожденные init, и ядерные - порожденные kthread. Да, я немного слукавил написав, что init единственный запускаемый ядром процесс. Это у других unix у которых нет ядерных процессов init - общий родитель всего. А в linux ядерные процессы есть, они даже работают в адресном пространстве ядра и ядро само стартует их по мере необходимости, назначая родителем pthread, независимо от init. – 
+     Mike
 
-     $help [-dms] [pattern ...]
+> 7. Print the list of processes to the terminal. Briefly describe the statuses of the processes. What condition are they in, or can they be arriving in?
 
-> 6) Explore the more and less commands using the help system. View the contents of files .bash* using commands.
+[Show All Running Processes in Linux using ps/htop commands](https://www.cyberciti.biz/faq/show-all-running-processes-in-linux/)
+      
+     Linux commands show all running processes
+     Apart from ps command, you can also use the following commands to display info about processes on Linux operating systems:
 
-# [ less command ](https://www.geeksforgeeks.org/less-command-linux-examples/)
-
-     Syntax : 
-     less filename
-
-     dmesg | less
-
-# [ more command ](https://www.geeksforgeeks.org/more-command-in-linux-with-examples/)
-
-     more -d sample.txt
-     more -f sample.txt
-     more -p sample.txt
-     more -c sample.txt
-     more -s sample.txt
-     more -u sample.txt
-     more +/reset sample.txt
-     more +30 sample.txt
-     cat a.txt | more
-
-> 7) What is skell_dir? What is its structure?
-
-# [ skel is derived from the skeleton because it contains basic structure of home directory ](https://sauravomar01.medium.com/etc-skel-directory-in-linux-dcefc0278f49)
-
-# [ What is the /etc/skel directory in Linux? ](https://www.linuxgurus.in/linux-etc-skel-directory/)
+     top command : Display and update sorted information about Linux processes.
+     atop command : Advanced System & Process Monitor for Linux.
+     htop command : Interactive process viewer in Linux.
+     pgrep command : Look up or signal processes based on name and other attributes.
+     pstree command : Display a tree of processes.
      
-     - What is the /etc/skel directory in Linux?
-     SAHIL HASANWHAT IS
-     - In this article, you will learn about What is the /etc/skel directory in Linux?
+***ps -aux | less***
 
-     Note: “skeleton” directory is define in /etc/default/useradd file
+***ps aux | less***
 
-     Below you can see the picture of /etc/default/useradd file which defines the skel directory. You can change the default location /etc/skel to any other location.
-
-     cat /etc/default/useradd
-
-     # useradd defaults file
-     GROUP=100
-     HOME=/home
-     INACTIVE=-1
-     EXPIRE=
-     SHELL=/bin/bash
-     SKEL=/etc/skel
-     CREATE_MAIL_SPOOL=yes
-
-     Changing the default user home location 
-
-     vim /etc/default/useradd
-
-     And change the default value from /home to the consider home location. For example, if you want to change it /data/userhome then you just need to type.
-
-     HOME=/data/userhome
-
-     When you create any new users, then the new users’ home will be /data/userhome.
-
-     Default permission of /etc/skel directory
-     The default permission of /etc/skel directory is drwxr-xr-x.
-
-     It is not recommended to change the permission of the skel directory or its contents. Changing the permission may break some of the programs because in the skel directory some profiles need the permission of ‘read’ and trying to permit it to execute will cause some programs/profiles to work unexpectedly.
-
-     Conclusion
-     In this tutorial, we learn about the /etc/skel directory in Linux. I hope, you understand, but if you have any questions, you can ask in the comment section.
-
-     You can read about
-
-     The /etc/skel directory contains files and directories that are automatically copied over to a new user’s home directory when such a user is created by the useradd program. skel is derived from the “skeleton”. Below is shown a picture.
-
-     - skel is derived from the skeleton because it contains basic structure of home directory
-     - The /etc/skel directory contains files and directories that are automatically copied over to a new user’s when it is created from useradd command.
-     - This will ensure that all the users gets same intial settings and environment.
-
-     The location of /etc/skel can be changed by editing the line that begins with SKEL= in the configuration file /etc/default/useradd. By default this line says SKEL=/etc/skel.
-
-     - Default Permission of the /etc/skel directory is drwxr-xr-x.
-     - It is not recommended to change the permission of skel directory or its contents. skel directory there are some profiles that needs the permission of read and trying to give it permission of execute will cause some programs/profiles to stop work or not works as expected.
+     Where, 
+          A : Select all processes
+          u : Select all processes on a terminal, including those of other users
+          x : Select processes without controlling ttys
      
-     ls -la /etc/skel/
+***ps -U root -u root -N***
 
-     root@ict-net-adm:/# ls -la /etc/skel/
-     total 20
-     drwxr-xr-x  2 root root 4096 Apr 23  2020 .
-     drwxr-xr-x 95 root root 4096 Dec  7 16:42 ..
-     -rw-r--r--  1 root root  220 Feb 25  2020 .bash_logout
-     -rw-r--r--  1 root root 3771 Feb 25  2020 .bashrc
-     -rw-r--r--  1 root root  807 Feb 25  2020 .profile
-     root@ict-net-adm:/#
+***ps -U root -u root --deselect***
 
-> 7) * Describe in plans that you are working on laboratory work 1. Tip: You should read the documentation for the finger command.
+> 8. Display only the processes of a specific user.
+
+***ps -u vivek***
+
+top
+pstree
+
+> 9. What utilities can be used to analyze existing running tasks (by analyzing the help for the ps command)?
+
+[man ps](https://man7.org/linux/man-pages/man1/ps.1.html)
+
+### Pages that refer to this page:
+      free(1),  fuser(1),  htop(1),  killall(1),  pgrep(1),  pidstat(1),  pmap(1),  pslog(1),  pstree(1),  pwdx(1),  slabtop(1),  systemd(1),  systemd-cgls(1),  systemd-firstboot(1),  systemd-nspawn(1),  tcpdump(1),  tload(1),  top(1),  uptime(1),  w(1),  proc(5),  credentials(7),  pid_namespaces(7),  pthreads(7),  sched(7),  lsof(8),  systemd-machined.service(8),  tcpdump(8),  vmstat(8)
+
+> 10. What information does top command display?
+
+[The top command (table of processes) displays the processor activity of your Linux box and also displays tasks managed by the kernel in real-time.](https://www.tecmint.com/12-top-command-examples-in-linux/)
+
+     top
+     htop
+> 11. Display the processes of the specific user using the top command.
+
+To display all user-specific running processes information, use the ***-u*** option will list specific User process details.
+
+     top -u tecmint
+
+> 12. What interactive commands can be used to control the top command? Give a couple of examples.
+
+     -h | -v	Help/Version
+
+     Show library version and the usage prompt, then quit.
+     -b	Batch-mode operation
+
+     Starts top in 'Batch' mode, which could be useful for sending output from top to other programs or to a file. In this mode, top does not accept input and runs until the iterations limit you've set with the '-n' command-line option, or until killed.
+     -c	Command-line/Program-name toggle
+
+     Starts top with the last remembered 'c' state reversed. Thus, if top was displaying command lines, now that field shows program names, and visa versa. See the 'c' interactive command for additional information.
+     -d interval	Delay-time, where interval is represented as: ss.tt (secs.tenths)
+
+     Specifies the delay between screen updates, and overrides the corresponding value in one's personal configuration file or the startup default. Later this can be changed with the 'd' or 's' interactive commands.
+
+     Fractional seconds are honored, but a negative number is not allowed. In all cases, however, such changes are prohibited if top is running in 'Secure mode', except for root (unless the 's' command-line option was used).
+     -H	Threads-mode operation
+
+     Instructs top to display individual threads. Without this command-line option a summation of all threads in each process is shown. Later this can be changed with the 'H' interactive command.
+     -i	Idle-process toggle
+
+     Starts top with the last remembered 'i' state reversed. When this toggle is Off, tasks that have not used any CPU since the last update is not displayed.
+     -n limit	Number of iterations
+
+     Specifies the maximum number of iterations, or frames, top should produce before ending.
+     -ppid	Monitor-PIDs mode, specified as: -ppid1 -ppid2 ... or -ppid1,pid2,pid3 ...
+
+     Monitor only processes with specified process IDs. This option can be given up to 20 times, or you can provide a comma delimited list with up to 20 pids. Co-mingling both forms is permitted.
+
+     A pid value of zero is treated as the process id of the top program itself (once it is running).
+
+     This command-line option only and should you want to return to normal operation, it is not necessary to quit and restart top -- issue any of these interactive commands: '=', 'u' or 'U'.
+
+     The 'p', 'u' and 'U' command-line options are mutually exclusive.
+     -s	Secure-mode operation
+
+     Starts top with secure mode forced, even for root. This mode is far better controlled through the system configuration file (see topic 6. FILES).
+     -S	Cumulative-time toggle
+
+     Starts top with the last remembered 'S' state reversed. When 'Cumulative time' mode is On, each process is listed with the cpu time that it and its dead children have used. See the 'S' interactive command for additional information regarding this mode.
+     -u|
+     -U user-id-or-name	User-filter-mode
+
+     Display only processes with a user id or username matching that given. The '-u' option matches the effective user whereas the '-U' option matches on any user (real, effective, saved, or filesystem).
+
+     The 'p', 'u' and 'U' command-line options are mutually exclusive.
+     -w number	Output-width-override
+
+     In 'Batch' mode, when used without an argument, top formats output using the COLUMNS= and LINES= environment variables, if set. Otherwise, width is fixed at the maximum 512 columns. With an argument, output width can be decreased or increased (up to 512) but the number of rows is considered unlimited.
+
+     In normal display mode, when used without an argument, top attempts to format output using the COLUMNS= and LINES= environment variables, if set. With an argument, output width can only be decreased, not increased. Whether using environment variables or an argument with -w, when not in 'Batch' mode actual terminal dimensions can never be exceeded.
+
+     Note: Without the use of this command-line option, output width is always based on the terminal at which top was invoked whether or not in 'Batch' mode.
+
+[Linux top command](https://www.computerhope.com/unix/top.htm)
+
+> 13. Sort the contents of the processes window using various parameters (for example, the amount of processor time taken up, etc.)
+
+[top(1) — Linux manual page](https://man7.org/linux/man-pages/man1/top.1.html)
+
+***top -o %CPU***
+
+***top -o DATA***
+
+***top -u ovo***
+
+***top -o ENVIRON***
+
+***htop --sort-key=PERCENT_MEM***
+
+     ### Use the ***top*** command in Linux/Unix:
      
-     man finger
-     info finger
+     press ***shift+m*** after running the top command
 
-> 8) * List the contents of the home directory using the ls command, define its files and directories. Hint: Use the help system to familiarize yourself with the ls command.
+          or you can interactively choose which column to sort on
 
-     ls --help
-     info ls
-     man ls
+     press ***Shift+f*** to enter the interactive menu
 
-     ls -alh --group-directories-first ~
-     ls -lah ~
-     ls -la ~
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
+     press the up or down arrow until the ***%MEM*** choice is highlighted
 
-# [Part 2](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
+     press ***s*** to select ***%MEM ***choice
 
-1) Examine the tree command. Master the technique of applying a template, for example, display all files that contain a character c, or files that contain a specific sequence of characters. List subdirectories of the root directory up to and including the second nesting level.
+     press enter to save your selection
 
-# [ Linux see directory tree structure using tree command ](https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/)
+     press ***q*** to exit the interactive menu
 
-     Syntax – Linux see directory tree structure
-     The syntax is:
-
-     tree
-     tree /path/to/directory
-     tree [options]
-     tree [options] /path/to/directory
-
-     To list contents of /etc in a tree-like format:
+> 14. Concept of priority, what commands are used to set priority?
      
-     tree /etc
-
-     The -a option should be passed to see all files. By default tree does not print hidden files (those beginning with a dot ‘.’). In no event does tree print the file system constructs ‘.’ (current directory) and ‘..’ (previous directory).:
-     
-     tree -a
-
-     To list directories only, run:
-     
-     tree -d
-
-     Pass the -C option to see colorized output, using built-in color defaults:
-     
-     tree -C
-
-          ------- Listing options -------
-     -a            All files are listed.
-     -d            List directories only.
-     -l            Follow symbolic links like directories.
-     -f            Print the full path prefix for each file.
-     -x            Stay on current filesystem only.
-     -L level      Descend only level directories deep.
-     -R            Rerun tree when max dir level reached.
-     -P pattern    List only those files that match the pattern given.
-     -I pattern    Do not list files that match the given pattern.
-     --ignore-case Ignore case when pattern matching.
-     --matchdirs   Include directory names in -P pattern matching.
-     --noreport    Turn off file/directory count at end of tree listing.
-     --charset X   Use charset X for terminal/HTML and indentation line output.
-     --filelimit # Do not descend dirs with more than # files in them.
-     --timefmt <f> Print and format time according to the format <f>.
-     -o filename   Output to file instead of stdout.
-     -------- File options ---------
-     -q            Print non-printable characters as '?'.
-     -N            Print non-printable characters as is.
-     -Q            Quote filenames with double quotes.
-     -p            Print the protections for each file.
-     -u            Displays file owner or UID number.
-     -g            Displays file group owner or GID number.
-     -s            Print the size in bytes of each file.
-     -h            Print the size in a more human readable way.
-     --si          Like -h, but use in SI units (powers of 1000).
-     -D            Print the date of last modification or (-c) status change.
-     -F            Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
-     --inodes      Print inode number of each file.
-     --device      Print device ID number to which each file belongs.
-     ------- Sorting options -------
-     -v            Sort files alphanumerically by version.
-     -t            Sort files by last modification time.
-     -c            Sort files by last status change time.
-     -U            Leave files unsorted.
-     -r            Reverse the order of the sort.
-     --dirsfirst   List directories before files (-U disables).
-     --sort X      Select sort: name,version,size,mtime,ctime.
-     ------- Graphics options ------
-     -i            Don't print indentation lines.
-     -A            Print ANSI lines graphic indentation lines.
-     -S            Print with CP437 (console) graphics indentation lines.
-     -n            Turn colorization off always (-C overrides).
-     -C            Turn colorization on always.
-     ------- XML/HTML/JSON options -------
-     -X            Prints out an XML representation of the tree.
-     -J            Prints out an JSON representation of the tree.
-     -H baseHREF   Prints out HTML format with baseHREF as top directory.
-     -T string     Replace the default HTML title and H1 header with string.
-     --nolinks     Turn off hyperlinks in HTML output.
-     ---- Miscellaneous options ----
-     --version     Print version and exit.
-     --help        Print usage and this help message and exit.
-     --            Options processing terminator.
-
-> 2) What command can be used to determine the type of file (for example, text or binary)? Give an example.
-# [ file command in Linux with examples ](https://www.geeksforgeeks.org/file-command-in-linux-with-examples/)
-
-     Syntax:
-
-     file [option] [filename]
-     
-     file email.py
-     file name.jpeg
-     file Invoice.pdf
-     file exam.ods
-     file videosong.mp4
-
-> 3) Master the skills of navigating the file system using relative and absolute paths. How can you go back to your home directory from anywhere in the filesystem?
-# [ Navigating your filesystem in the Linux terminal ](https://www.redhat.com/sysadmin/navigating-filesystem-linux-terminal)
-
-     You can also always return to your home directory instantly using this shortcut:
-
-     $ cd ~
-     $ pwd
-     /home/seth
-
-> 4) Become familiar with the various options for the ls command. Give examples of listing directories using different keys. Explain the information displayed on the terminal using the -l and -a switches.
-# [ 15 Basic ‘ls’ Command Examples in Linux ](https://www.tecmint.com/15-basic-ls-command-examples-in-linux/)
-
-     info ls
-     man ls
-     ls --help
-
-     1. List Files and Directories in Linux
-     Running ls command with no option list files and directories in a bare format where we won’t be able to view details like file types, size, modified date and time, permission and links, etc.
-     2. Long Listing of Files in Linux
-     Here, ls -l (-l is a character, not one) shows file or directory, size, modified date and time, file or folder name and owner of the file, and its permission.
-     3. View Hidden Files in Linux
-     List all files including hidden files starting with ‘.‘.
-     4. List Files with Human Readable Format
-     With a combination of -lh option, shows sizes in a human-readable format.
-     5. List Files and Directories with ‘/’ Character at the End
-     Using the -F option with the ls command will add the '/' character at the end of each directory.
-     6. List Files in Reverse Order in Linux
-     The following command with the ls -r option display files and directories in reverse order.
-     7. Recursively list Sub-Directories in Linux
-     ls -R option will list very long listing directory trees. See an example of the output of the command.
-     8. List Files and Directories in Reverse Order in Linux
-     A combination of -ltr will show the latest modification file or directory date as last.
-     9. Sort Files by File Size in Linux
-     With a combination of -lS displays file size in order, will display big in size first.
-     10. Display Inode number of File or Directory
-     We can see some numbers printed before the file/directory name. With -i options list file/directory with an inode number.
-     11. Shows Version of ls Command
-     Check the version of the ls command.
-     12. Show ls Command Help Page
-     The help page of ls command with their option.
-     13. List Directory Information in Linux
-     With ls -l command list files under directory /tmp. Wherein with -ld parameters displays information of /tmp directory.
-     14. Display UID and GID of Files
-     To display UID and GID of files and directories. use option -n with ls command.
-     15. ls command and its Aliases
-     We have made an alias for ls command, when we execute ls command it’ll take the -l option by default and display a long listing as mentioned earlier.
-
-> 5) Perform the following sequence of operations: 
-- create a subdirectory in the home directory; 
-- in this subdirectory create a file containing information about directories located in the root directory (using I/O redirection operations);
-- view the created file;
-- copy the created file to your home directory using relative and absolute addressing.
-- delete the previously created subdirectory with the file requesting removal;
-- delete the file copied to the home directory.
-
-          mkdir ~/task5.1_part2_p5
-         tree -ld /etc > ~/task5.1_part2_p5/info_ebaut_directory
-        less ~/task5.1_part2_p5/info_ebaut_directory
-         cp ~/task5.1_part2_p5/info_ebaut_directory home/ovo/
-          cp /root/task5.1_part2_p5/info_ebaut_directory /home/ovo/
-         rm -r ~/task5.1_part2_p5/
-          rm /home/ovo/info_ebaut_directory
-
-> 6) Perform the following sequence of operations:
-# [ What is the difference between a symbolic link and a hard link?](https://stackoverflow.com/questions/185899/what-is-the-difference-between-a-symbolic-link-and-a-hard-link)
-
-- create a subdirectory test in the home directory;
-- copy the .bash_history file to this directory while changing its name to labwork2;
-- create a hard and soft link to the labwork2 file in the test subdirectory;
-- how to define soft and hard link, what do these
-concepts;
-- change the data by opening a symbolic link. What changes will happen and why
-- rename the hard link file to hard_lnk_labwork2;
-- rename the soft link file to symb_lnk_labwork2 file;
-- then delete the labwork2. What changes have occurred and why?
-     
-          mkdir ~/test
-          cp ~/.bash_history ~/test/labwork2
-          ln -P labwork2 PhisicalLink
-          ln -s labwork2 SymboliclLink
-
-# [Hard links and soft links in Linux explained](https://www.redhat.com/sysadmin/linking-linux-explained)
-
-Files that are ***hard-linked*** together share the same ***inode*** number.
-
-     [tcarrigan@server demo]$ ls -li link_test /tmp/link_new 
-     2730074 -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 link_test
-     2730074 -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 /tmp/link_new
-
- >    -  A hard link always points a filename to data on a storage device.
- >    -  A soft link always points a filename to another filename, which then points to information on a storage device.
-
-     mv PhisicalLink hard_lnk_labwork2
-
-> 7) Using the locate utility, find all files that contain the squid and traceroute
-sequence.
-# [locate command in Linux with Examples](https://www.geeksforgeeks.org/locate-command-in-linux-with-examples/)
-
-     man locate
-     info locate
-     locate --help
-
-     Syntax:
-
-     locate [OPTION]... PATTERN...
-     Exit Status: This command will exit with status 0 if any specified match found. If no match founds or a fatal error encountered, then it will exit with status 1.
-
-     Options:
-
-     -b, –basename : Match only the base name against the specified patterns, which is the opposite of –wholename.
-     -c, –count : Instead of writing file names on standard output, write the number of matching entries only.
-     -d, –database DBPATH : Replace the default database with DBPATH. DBPATH is a : (colon) separated list of database file names. If more than one –database option is specified, the resulting path is a concatenation of the separate paths. An empty database file name is replaced by the default database. A database file name – refers to the standard input. Note that a database can be read from the standard input only once.
-     -e, –existing : Print only entries that refer to files existing at the time locate is run.
-     -L, –follow : When checking whether files exist (if the –existing option is specified), follow trailing symbolic links. This causes bro ken symbolic links to be omitted from the output. This option is the default behavior. The opposite can be specified using –nofollow.
-     -h, –help : Write a summary of the available options to standard output and exit successfully.
-     -i, –ignore-case : Ignore case distinctions when matching patterns.
-     -l, –limit, -n LIMIT : Exit successfully after finding LIMIT entries. If the –count option is specified, the resulting count is also limited to LIMIT.
-     -m, –mmap : Ignored, but included for compatibility with BSD and GNU locate.
-     -P, –nofollow, -H : When checking whether files exist (if the –existing option is specified), do not follow trailing symbolic links. This causes broken symbolic links to be reported like other files.
-     This option is the opposite of –follow.
-
-     -0, –null : Separate the entries on output using the ASCII NUL character instead of writing each entry on a separate line. This option is designed for interoperability with the –null option of GNU xargs.
-     -S, –statistics : Write statistics about each read database to standard output instead of searching for files and exit successfully.
-     -q, –quiet : Write no messages about errors encountered while reading and processing databases.
-     -r, –regexp REGEXP : Search for a basic regexp REGEXP. No PATTERNs are allowed if this option is used, but this option can be specified multiple times.
-     –regex : Interpret all PATTERNs as extended regexps.
-     -s, –stdio : Ignored, for compatibility with BSD and GNU locate.
-     -V, –version : Write information about the version and license of locate on standard output and exit successfully.
-     -w, –wholename : Match only the whole path name against the specified patterns. This option is the default behavior. The opposite can be specified using –basename.
-
-     apt install mlocate-y
-     updatedb
-
-     locate -A squid
-     locate -A traceroute
-
-     locate -i -0 *sample.txt*
-     locate -i *SAMPLE.txt*
-     locate -c [.txt]*
-     locate "*.html" -n 20
-     locate sample.txt 
-
-[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.1)
-
-> 8) Determine which partitions are mounted in the system, as well as the types of
-these partitions.
-
-[Which partition is mounted to where? [duplicate])](https://unix.stackexchange.com/questions/192273/which-partition-is-mounted-to-where/192279)
-
-[lsblk Command to list block device on Linux)](https://www.cyberciti.biz/faq/linux-list-disk-partitions-command/)
-
-[19. Partitions, File Systems, Formatting, Mounting](https://rute.gerdesas.com/node22.html)
-     
-     man fdisk
-     man lsblk
-     man sfdisk
-     man parted
-
-     lsblk
-     lsblk /dev/DEVICE
-     lsblk /dev/sda
-     lsblk -l
-     lsblk -d | grep disk
-
-     lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT
-
-     hwinfo | more
-     hwinfo --block | more
-     hwinfo --block --short
-     inxi -P
-     inxi -p | more
-
-     lsblk -f -m | grep ext4
-     lsblk -f -m
-     blkid
-
-> 9) Count the number of lines containing a given sequence of characters in a given
-file.
-[How to Count lines in a file in UNIX/Linux](https://www.thegeekdiary.com/how-to-count-lines-in-a-file-in-unix-linux/)
-
-     Using “wc -l”
-
-     wc -l [filename]
-     wc -l file01.txt
-     wc -l < file01.txt
-     cat file01.txt | wc -l
-
-     Using awk
-     awk 'END{print NR}' [filename]
-     awk 'END{print NR}' file01.txt
-
-     Using sed
-     sed -n '$=' [filename]
-     sed -n '$=' file01.txt
-
-     Using grep
-     grep -c ".*" [filename]
-     grep -c ".*" file01.txt
-     grep -Hc ".*" [filename]
-     grep -c ^ file01.txt
-     grep -Hc ".*" file01.txt
-
-     Some more commands
-     nl [filename]
-     nl file01.txt
-     nl file01.txt | tail -1 | awk '{print $1}'
-     cat -n file01.txt
-     cat -n file01.txt | tail -1 | awk '{print $1}'
-     perl -lne 'END { print $. }' file01.txt
-
-> 10) Using the ***find*** command, find all files in the ***/etc*** directory containing the
-***host*** character sequence.
-
-[find Command](https://www.ibm.com/docs/en/aix/7.1?topic=f-find-command)
-
-[find command in Linux with examples](https://www.geeksforgeeks.org/find-command-in-linux-with-examples/)
-     
-
 

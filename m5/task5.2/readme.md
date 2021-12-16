@@ -1074,50 +1074,50 @@ man sudoers
      echo "TopURLs 50"  >> $OUT
      echo "TopKURLs 50"  >> $OUT
 
-     echo "Weblizer config wrote to $OUT"
-     -g file
+     echo "Weblizer config wrote to $OUT" 
+***-g file***
      True if file exists and is set-group-id.
 
-     -h file
+***-h file***
      True if file exists and is a symbolic link.
 
-     -k file
+***-k file***
      True if file exists and its ‘‘sticky’’ bit is set.
 
-     -p file
+***-p file***
      True if file exists and is a named pipe (FIFO).
 
-     -r file
+***-r file***
      True if file exists and is readable.
 
-     -s file
+***-s file***
      True if file exists and has a size greater than zero.
 
-     -t fd
+***-t fd***
      True if file descriptor fd is open and refers to a terminal.
 
-     -u file
+***-u file***
      True if file exists and its set-user-id bit is set.
 
-     -w file
+***-w file***
      True if file exists and is writable.
 
-     -x file
+***-x file***
      True if file exists and is executable.
 
-     -O file
+***-O file***
      True if file exists and is owned by the effective user id.
 
-     -G file
+***-G file***
      True if file exists and is owned by the effective group id.
 
-     -L file
+***-L file***
      True if file exists and is a symbolic link.
 
-     -S file
+***-S file***
      True if file exists and is a socket.
 
-     -N file
+***-N file***
 
 
 
