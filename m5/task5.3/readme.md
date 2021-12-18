@@ -275,4 +275,18 @@ To display all user-specific running processes information, use the ***-u*** opt
 
 ***ps axo pid,comm,nice,cls --sort=-nice***
 
+[Change The Priority Of A Process With Nice command](https://ostechnix.com/change-priority-process-linux/)
+
+     In Unix ecosystem, a process is a running program. So, any program running on your Linux box is a process. One or more processes can be running on your Linux box at a time. We can display the information about active processes using ps command. By default, the ps command only shows current user's processes. You can use "ps -ef" (without quotes, of course) command to display all processes. To view the user of a process, we use "ps -u". Hope you got a basic idea about Linux processes. Let us now come to the today's topic - how to change the priority of a process in Linux using nice and renice commands.
+
+     As you might know, by default, Linux kernel considers all processes equally important and allocates the same amount of CPU time for each process. Sometimes, you might want to increase or decrease the priority of certain processes to utilize more CPU time. This is where the nice and renice commands comes in help. Nice command is used to run a process with an user defined priority whereas renice command is used to change the priority of a running process. Generally, nice and renice commands are used to change the priority than the default priority of a process.
+
+***nice -15 cmus &***
+
+***renice -n 18 -p 15059***
+
+***renice -n -20 -g ostechnix***
+
+> 15. Can I change the priority of a process using the top command? If so, how?
+
 
