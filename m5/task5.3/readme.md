@@ -352,4 +352,4 @@ screenshots: command – result should be presented)
 
 [![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
-[![*Report in screenshots*](shreenshot5/task5.3)
+[![*Report in screenshots*](shreenshot/9.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
