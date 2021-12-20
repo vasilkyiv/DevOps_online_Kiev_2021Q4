@@ -236,17 +236,17 @@ To display all user-specific running processes information, use the ***-u*** opt
 ***top -o ENVIRON***
 
 ***htop --sort-key=PERCENT_MEM***
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
-[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
-[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
-[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m35/task5.3)
 
-[![*Report in screenshots*](shreenshot/5.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+[![*Report in screenshots*](shreenshot/5.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
-[![*Report in screenshots*](shreenshot/6.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task5.3)
+[![*Report in screenshots*](shreenshot/6.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
      ### Use the ***top*** command in Linux/Unix:
      
@@ -289,4 +289,67 @@ To display all user-specific running processes information, use the ***-u*** opt
 
 > 15. Can I change the priority of a process using the top command? If so, how?
 
+[Once given top command, press r. Give PID value of the process you want to change the process value. Give renice value (from -20 to +19)](https://unix.stackexchange.com/questions/484576/how-we-can-change-the-priority-of-a-process-with-top-command-in-linux)
 
+> 16. Examine the kill command. How to send with the kill command process control signal? Give an example of commonly used signals
+
+[kill Command](https://linuxize.com/post/kill-command-in-linux/)
+
+[kill command in Linux with Examples](https://www.geeksforgeeks.org/kill-command-in-linux-with-examples/)
+
+[Linux / UNIX: Kill Command Examples](https://www.cyberciti.biz/faq/unix-kill-command-examples/)
+
+***man kill ***
+
+***kill --help***
+
+***info kill***
+
+***kill -9 6263 6199 6142 6076***
+
+     root@ict-net-adm:/# kill -l
+     1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+     6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+     11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+     16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+     21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+     26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+     31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+     38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+     43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+     48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+     53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+     58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+     63) SIGRTMAX-1  64) SIGRTMAX
+
+17. Commands jobs, fg, bg, nohup. What are they for? Use the sleep, yes command to demonstrate the process control mechanism with fg, bg&
+
+[Процессы, задачи. Команды fg, bg, jobs, top, nohup](https://intellect.icu/protsessy-zadachi-komandy-fg-bg-jobs-top-nohup-680)
+
+- jobs: Display a list of the jobs with their status 
+          
+- fg: Move a background job into the foreground
+          
+- bg: Resume suspended jobs by running them as background jobs
+
+     top 
+
+     CTRL+Z
+
+     jobs 
+
+     fg
+
+[![*Report in screenshots*](shreenshot/7.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+
+
+[Part 2 ](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5)
+
+1. Check the implementability of the most frequently used OPENSSH commands in the MS
+Windows operating system. (Description of the expected result of the commands +
+screenshots: command – result should be presented)
+
+[![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+[![*Report in screenshots*](shreenshot5/task5.3)
