@@ -353,3 +353,75 @@ screenshots: command – result should be presented)
 [![*Report in screenshots*](shreenshot/8.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
 
 [![*Report in screenshots*](shreenshot/9.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+2. Implement basic SSH settings to increase the security of the client-server connection (at least)
+
+[Top 20 OpenSSH Server Best Security Practices](https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html)
+
+                    1. Use SSH public key based login
+
+                         $ ssh-keygen -t key_type -b bits -C "comment"
+
+                         $ ssh-keygen -t ed25519 -C "Login to production cluster at xyz corp"
+
+                         $ ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_aws_$(date +%Y-%m-%d) -C "AWS key for abc corp clients"
+
+                    ***ssh vivek@rhel7-aws-server***
+
+                    2. Disable root user login
+
+                         sudo adduser vivek sudo
+
+                         sudo usermod -aG wheel vivek
+
+                    3. Disable password based login
+
+                    4. Limit Users’ ssh access
+
+                    5. Disable Empty Passwords
+
+                    6. Use strong passwords and passphrase for ssh users/keys
+
+                    7. Firewall SSH TCP port # 22
+
+                    8. Change SSH Port and limit IP binding
+
+                    9. Use TCP wrappers (optional)
+
+> 3. List the options for choosing keys for encryption in SSH. Implement 3 of them.
+
+[Choosing an Algorithm and Key Size](https://www.ssh.com/academy/ssh/keygen#choosing-an-algorithm-and-key-size)
+
+
+### Choosing an Algorithm and Key Size
+     SSH supports several public key algorithms for authentication keys. These include:
+
+     rsa - an old algorithm based on the difficulty of factoring large numbers. A key size of at least 2048 bits is recommended for RSA; 4096 bits is better. RSA is getting old and significant advances are being made in factoring. Choosing a different algorithm may be advisable. It is quite possible the RSA algorithm will become practically breakable in the foreseeable future. All SSH clients support this algorithm.
+
+     dsa - an old US government Digital Signature Algorithm. It is based on the difficulty of computing discrete logarithms. A key size of 1024 would normally be used with it. DSA in its original form is no longer recommended.
+
+     ecdsa - a new Digital Signature Algorithm standarized by the US government, using elliptic curves. This is probably a good algorithm for current applications. Only three key sizes are supported: 256, 384, and 521 (sic!) bits. We would recommend always using it with 521 bits, since the keys are still small and probably more secure than the smaller keys (even though they should be safe as well). Most SSH clients now support this algorithm.
+
+     ed25519 - this is a new algorithm added in OpenSSH. Support for it in clients is not yet universal. Thus its use in general purpose applications may not yet be advisable.
+
+     The algorithm is selected using the -t option and key size using the -b option. The following commands illustrate:
+
+     ssh-keygen -t rsa -b 4096 ssh-keygen -t dsa ssh-keygen -t ecdsa -b 521 ssh-keygen -t ed25519
+
+> 4. Implement port forwarding for the SSH client from the host machine to the guest Linux virtual machine behind NAT.
+
+[How to enable access to VirtualBox via SSH NAT ?](hhttps://bobcares.com/blog/virtualbox-ssh-nat/)
+
+[![*Report in screenshots*](shreenshot/10.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+[![*Report in screenshots*](shreenshot/11.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+[![*Report in screenshots*](shreenshot/12.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m5/task5.3)
+
+> 5*. Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the server using ssh, telnet, rlogin. Analyze the result.
+
+[12 Tcpdump Commands – A Network Sniffer Tool](https://www.tecmint.com/12-tcpdump-commands-a-network-sniffer-tool/)
+
+***tcpdump -vv -i any -nn port 22 -w tcp.pcap***
+
+***tcpdump -vv -i any -nn port 23 -w tcp.pcap***
