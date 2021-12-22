@@ -4,7 +4,7 @@
 
 [MODULE 04 DBA](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4) 
 ===========================================================================
-> # [TASK_4.1 04 DBA](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
+> # [TASK_4.1 DBA](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
 > # [PART 1](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
@@ -12,11 +12,11 @@
 
 > 2. Install MySQL server on VM.
 
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4/task4.1)
 
 > 3. Select a subject area and describe the database schema, (minimum 3 tables)
 
-[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+[![*Report in screenshots*](shreenshot/2.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4/task4.1)
 
 **************************************************
 
@@ -62,7 +62,7 @@ Transaction Control Language (TCL) – группа операторов для 
 
 > 4. Create a database on the server through the console.
 
-[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4/task4.1)
 
 > 5. Fill in tables.
 
@@ -1236,7 +1236,7 @@ mysql -uroot -p -h ostapenko.cj200uvdjahq.eu-central-1.rds.amazonaws.com --all-d
 
 # [man](https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:)
 
-[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+[![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4/task4.1)
 
 
 > # [PART 3](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
@@ -1245,5 +1245,5 @@ mysql -uroot -p -h ostapenko.cluster-cj200uvdjahq.eu-central-1.rds.amazonaws.com
 
 mysql -uroot -p -h ostapenko.cluster-cj200uvdjahq.eu-central-1.rds.amazonaws.com
 
-[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
+[![*Report in screenshots*](shreenshot/4.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4/task4.1)
 

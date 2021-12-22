@@ -3,9 +3,9 @@
 =======================================
 
 ************************************************************************
-[MODULE 02](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2) 
+[MODULE 02 Virtualization and Cloud Basic](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2) 
 ===========================================================================
-> - [TASK_2.2](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2)
+> - [TASK_2.2 Virtualization and Cloud Basic](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2)
 
 ### Module 2 Virtualization and Cloud Basic
 
@@ -19,7 +19,7 @@ https://docs.aws.amazon.com/en_us/awsaccountbilling/latest/aboutv2/billing-free-
 
 > 2.2. [register with AWS Educate](https://aws.amazon.com/education/awseducate/?nc1=h_ls)
 
-[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.1/shreenshot/1.png)
+[![*Report in screenshots*](shreenshot/1.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2/task2.2/shreenshot/1.png)
 
 > 3. Find the hands-on tutorials and AWS Well-Architected Labs for your AWS needs. Explore list of step-by-step tutorials for deferent category. Use, repeat and have fun))
 

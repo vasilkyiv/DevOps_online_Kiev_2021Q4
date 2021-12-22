@@ -3,9 +3,9 @@
 =======================================
 
 ************************************************************************
-[MODULE 02](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2) 
+[MODULE 02 HYPERVISORS](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2) 
 ===========================================================================
-> - [TASK_2.1](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2)
+> - [TASK_2.1 HYPERVISORS](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m2)
 
 ### PART 1. HYPERVISORS 
 1. What are the most popular hypervisors for infrastructure virtualization?
