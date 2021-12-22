@@ -2,7 +2,7 @@
 [DevOps_online_Kiev_2021Q4 (MY GITHUB URL REPO)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4.git)
 =======================================
 
-[MODULE 04 NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4) 
+[MODULE 04 DBA](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4) 
 ===========================================================================
 > # [TASK_4.1 04 DBA](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
@@ -1217,7 +1217,7 @@ FLUSH PRIVILEGES;
 
 ****************************************
 
-# PART 2
+> # [PART 2](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
 > 10.Make backup of your database.
 
@@ -1239,7 +1239,7 @@ mysql -uroot -p -h ostapenko.cj200uvdjahq.eu-central-1.rds.amazonaws.com --all-d
 [![*Report in screenshots*](shreenshot/3.png?raw=true)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m3/task4.1)
 
 
-# PART 3
+> # [PART 3](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m4)
 
 mysql -uroot -p -h ostapenko.cluster-cj200uvdjahq.eu-central-1.rds.amazonaws.com < C:/mysql/folder/1.sql
 
