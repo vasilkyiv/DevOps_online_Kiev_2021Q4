@@ -2,10 +2,10 @@
 [DevOps_online_Kiev_2021Q4 (MY GITHUB URL REPO)](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4.git)
 =======================================
 
-[MODULE 08 LINUX Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m8) 
+[MODULE 08 Python](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m8) 
 ===========================================================================
 
-[TASK_8.1 Linux Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m8/task8.1) 
+[TASK_8.1 Python intro](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m8/task8.1) 
 
 > - 1 install & configure ***jupiterlab*** under windows 11 (64)
 
