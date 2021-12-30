@@ -13,12 +13,70 @@
 
 > 2. VM2 has one interface (internal), VM1 has 2 interfaces (NAT and internal). Configure all network interfaces in order to make VM2 has an access to the Internet (iptables, forward, masquerade).
 
-hostnamectl set-hostname vm1
+### for host 1
+***hostnamectl set-hostname vm1***
 
-echo vm2 127.0.0.1 >> /etc/hosts
+***echo vm1  127.0.0.1 >> /etc/hosts***
+    
+    ubuntu@vm1:~$ sudo -s
 
-ip addr add 192.168.1.10/255.255.255.0 broadcast 192.168.1.255 dev eth0
+    root@vm1:/home/ubuntu# cat /etc/netplan/01-network-manager-all.yaml 
 
-ip link set eth0 up
+    # Let NetworkManager manage all devices on this system
+    network:
+    version: 2
+    renderer: NetworkManager
+    ethernets:
+        enp0s8:
+        dhcp4: no
+        dhcp6: no
+        addresses: [192.168.1.1/24]
+        gateway4: 10.0.2.2
+        nameservers:
+            addresses: [8.8.8.8, 8.8.4.4]
+        enp0s3:
+        dhcp4: no
+        dhcp6: no
+        addresses: [10.0.2.15/24]
+        gateway4: 10.0.2.2
+        nameservers:
+            addresses: [8.8.8.8, 8.8.4.4]
+        routes:
+        - to: 0.0.0.0/0
+            via: 10.0.2.2 
+            metric: 0  
 
-echo vm1 127.0.0.1 >> /etc/hosts
+    root@vm1:/home/ubuntu# 
+
+ 
+
+### for host 2
+
+hostnamectl set-hostname vm2
+
+echo vm2  127.0.0.1 >> /etc/hosts
+
+[Как настроить сеть с Netplan в Ubuntuclear](https://ubuntos.ru/kak-nastroit-set-s-netplan-v-ubuntu)
+
+
+root@ubuntu2110:/home/ubuntu# cat /etc/netplan/01-network-manager-all.yaml 
+
+# Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s8:
+      dhcp4: no 
+      dhcp6: no 
+      addresses: [192.168.1.10/24] 
+      nameservers: 
+        addresses: [8.8.8.8]
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.1.1  
+
+root@ubuntu2110:/home/ubuntu# 
+
+
+
