@@ -5,8 +5,6 @@
 [MODULE 06 LINUX NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m6) 
 ===========================================================================
 
-[MODULE 06 LINUX NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m6) 
-===========================================================================
 
  # [TASK_6.2 LINUX NETWORKING](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m6)
  

@@ -18,6 +18,7 @@
 ***hostnamectl set-hostname vm1***
 
 ***echo vm1  127.0.0.1 >> /etc/hosts***
+i
     
  > - ###  діюча  конфігурація netplan (static)
 
@@ -67,7 +68,7 @@
           #addresses: [10.0.2.15/24]
           #gateway4: 10.0.2.2
           #nameservers: 
-          # addresses: [8.8.8.8,8.8.4.4]
+          # addresses:0.0. [8.8.8.8,8.8.4.4]
         # routes:
         # - to: 0.0.0.0/0
         #   via: 10.0.2.2
@@ -85,7 +86,7 @@
 
 ***sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE***
 
-***sudo iptables -t nat -A PREROUTING -i enp0s3 -p tcp --dport 2222 -j DNAT --to-destination 192.168.1.10:22***
+***sudo iptables -t nat -A PREROUTING -i enp0s3 -p tcp --dport 2223 -j DNAT --to-destination 192.168.1.10:22***
 
 > - ### **bash_history**
 
