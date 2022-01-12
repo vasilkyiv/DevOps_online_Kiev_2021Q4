@@ -47,3 +47,14 @@
 
 > - [TASK_7.1 Linux Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m7/task7.1)
 
+[MODULE 08 LINUX Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m8) 
+===========================================================================
+
+> - [TASK_8.1 Linux Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m8/task8.1)
+
+[MODULE 09 LINUX Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m9) 
+===========================================================================
+
+> - [TASK_9.1 Linux Administrations](https://github.com/vasilkyiv/DevOps_online_Kiev_2021Q4/tree/main/m9/task9.1)
+
+
