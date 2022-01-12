@@ -131,3 +131,7 @@
 
     if __name__ == '__main__':
         unittest.main()
+
+# [Python docs](https://docs.python.org/3/library/unittest.html)
+# [The Python Standard Library](https://docs.python.org/3/library/)
+# [ Python general index ](https://docs.python.org/3/genindex-all.html)
